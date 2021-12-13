@@ -41,7 +41,7 @@ export default {
   display: flex;
   font-size: 32px;
   flex-wrap: wrap;
-  padding: 7.5rem 0;
+  padding: 3rem 0;
 
   .itemWrap {
     width: 33.3333%;
