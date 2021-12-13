@@ -14,6 +14,7 @@
       </header>
     </div>
     <UpdateLog />
+    <HomeSwitch />
     <div class="wrap content">
       <Content class="theme-default-content custom" />
     </div>
@@ -21,12 +22,13 @@
 </template>
 
 <script>
+import HomeSwitch from "./HomeSwitch.vue";
 import NavLink from "@theme/components/NavLink.vue";
 import UpdateLog from "@theme/components/UpdateLog.vue";
 export default {
   name: "Home",
 
-  components: { NavLink, UpdateLog },
+  components: { NavLink, UpdateLog,HomeSwitch },
   created() {
     // console.log("created site", this.$site, this.$page);
   },
@@ -215,6 +217,7 @@ export default {
 
         #main-title {
           width: 100%;
+          font-size: 2rem;
         }
       }
 

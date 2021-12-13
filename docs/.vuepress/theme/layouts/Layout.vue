@@ -149,7 +149,7 @@ export default {
     width: 1200px;
     margin: 0 auto;
     position: relative;
-    display: flex;
+    // display: flex;
     background-color: #f6f6f6;
 
     .page-left-background {
