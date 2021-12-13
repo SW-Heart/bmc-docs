@@ -128,8 +128,8 @@ function getGuideSidebar (groupA) {
       collapsable: true,
       children: [
             '01_introduction',
-            '01_testnet_quick_start',
             '01_mainnet_quick_start',
+            '01_testnet_quick_start',
             '01_basics',
             '01_tools',
             '01_bap20_token'
