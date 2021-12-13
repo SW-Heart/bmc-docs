@@ -1,17 +1,24 @@
 <template>
   <div class="switch">
-    <a :class="['option', { actived: !isBmc }]" href="https://developer.bytom.io/">Bytom</a>
-    <a :class="['option', { actived: isBmc }]" href="https://bmcdev.bytom.io/">BMC</a>
+    <a :class="['option', { actived: !this.isBmc }]" href="https://developer.bytom.io/">Bytom</a>
+    <a :class="['option', { actived: this.isBmc }]" href="https://bmcdev.bytom.io/">BMC</a>
   </div>
 </template>
 <script>
 export default {
   name: "HomeSwitch",
-  computed: {
-    isBmc() {
-      return window.location.host === "bmcdev.bytom.io";
-    },
+  data(){
+    return {
+      isBmc: false
+    }
   },
+  mounted(){
+    if(window.location.host === "bmcdev.bytom.io"){
+      this.isBmc = true
+    }else{
+      this.isBmc = false
+    }
+  }
 };
 </script>
 
