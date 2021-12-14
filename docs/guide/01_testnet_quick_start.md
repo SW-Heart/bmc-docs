@@ -11,7 +11,7 @@ we use metamask , and the introduction is as follow:
 ### 1. Config Metamask for BMC Testnet
 
 - NetWork Name: BMC Testnet
-- RPC URL:  [http://47.102.211.242:8553](http://47.102.211.242:8553)
+- RPC URL:  [https://testnet.bmcchain.com](https://testnet.bmcchain.com)
 - Chain ID: 288
 - Currency Symbol: BTM
 - Block Explorer URL: (Optional)
