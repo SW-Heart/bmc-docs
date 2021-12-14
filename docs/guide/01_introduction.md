@@ -1,6 +1,6 @@
 # Introduction
 
-## What is Bytom Sidechain?
+## What is Bytom Sidechain(BMC)?
 
 Bytom sidechain is a high-performance layer 2 scalability solution that is compatible with EVM (Ethereum Virtual Machine) and OFMF (Open Federation Management Framework) cross-chain.
 

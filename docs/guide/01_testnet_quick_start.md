@@ -12,7 +12,7 @@ we use metamask , and the introduction is as follow:
 
 - NetWork Name: BMC Testnet
 - RPC URL:  [http://47.102.211.242:8553](http://47.102.211.242:8553)
-- Chain ID: 999
+- Chain ID: 288
 - Currency Symbol: BTM
 - Block Explorer URL: (Optional)
 
@@ -25,6 +25,8 @@ we use metamask , and the introduction is as follow:
 ## Get testnet token
 
 [http://47.102.211.242:8080](http://47.102.211.242:8080)
+
+![](../img/01/testnet2-2.png)
 
 ## Deploy smart contract
 
