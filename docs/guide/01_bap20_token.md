@@ -1,6 +1,6 @@
 # BAP20 Token
 
-A BAP20 token must implement the interface IBEP20 in IBAP20.sol. This is a template contract BAP20Token.template. Users just need to fill in _name, _symbol, _decimals and _totalSupply according to their own requirements:
+A BAP20 token must implement the interface IBAP20 in IBAP20.sol. This is a template contract BAP20Token.template. Users just need to fill in _name, _symbol, _decimals and _totalSupply according to their own requirements:
 
 ```
   constructor() public {
