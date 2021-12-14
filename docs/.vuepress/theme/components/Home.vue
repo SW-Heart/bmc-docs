@@ -59,6 +59,7 @@ export default {
   background: #fafafa url('/images/bg-hero-3200.jpg') center top / 100% no-repeat;
   height: 24.5rem;
   .home {
+    width: 100%;
     .wrap {
       &>:first-child {
         width: 100%;
