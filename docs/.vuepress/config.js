@@ -132,7 +132,8 @@ function getGuideSidebar (groupA) {
             '01_testnet_quick_start',
             '01_basics',
             '01_tools',
-            '01_bap20_token'
+            '01_bap20_token',
+            '01_token_list'
       ]
     }
   ]

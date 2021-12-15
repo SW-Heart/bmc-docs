@@ -8,7 +8,8 @@ const zh = [
       { title: '测试网快速入门', link: '/zh/guide/01_testnet_quick_start.html' },
       { title: '基本概念', link: '/zh/guide/01_basics.html' },
       { title: '工具', link: '/zh/guide/01_tools.html' },
-      { title: 'BAP20资产', link: '/zh/guide/01_bap20_token.html' }
+      { title: 'BAP20资产', link: '/zh/guide/01_bap20_token.html' },
+      { title: '资产合约列表', link: '/zh/guide/01_token_list.html' }
     ]
   }
 ];
@@ -21,7 +22,8 @@ const en = [
       { title: 'Testnet Quick Start', link: '/guide/01_testnet_quick_start.html' },
       { title: 'Basics', link: '/guide/01_basics.html' },
       { title: 'Tools', link: '/guide/01_tools.html' },
-      { title: 'BAP20 Token', link: '/guide/01_bap20_token.html' }
+      { title: 'BAP20 Token', link: '/guide/01_bap20_token.html' },
+      { title: 'Token List', link: '/guide/01_token_list.html' }
     ]
   }
 ];
