@@ -11,7 +11,7 @@ we use metamask , and the introduction is as follow:
 ### 1. Config Metamask for BMC Testnet
 
 - NetWork Name: BMC Testnet
-- RPC URL:  [https://testnet.bmcchain.com](https://testnet.bmcchain.com)
+- RPC URL: https://testnet.bmcchain.com
 - Chain ID: 288
 - Currency Symbol: BTM
 - Block Explorer URL: (Optional)
@@ -24,7 +24,7 @@ we use metamask , and the introduction is as follow:
 
 ## Get testnet token
 
-[http://47.102.211.242:8080](http://47.102.211.242:8080)
+[https://bmc.bytom.io/faucet/](https://bmc.bytom.io/faucet/)
 
 ![](../img/01/testnet2-2.png)
 

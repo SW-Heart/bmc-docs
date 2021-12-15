@@ -8,3 +8,5 @@
 [Web3js](https://web3js.readthedocs.io/en/v1.2.11/)
 
 [Truffle](http://trufflesuite.com/docs/teams/quickstart)
+
+[faucet](https://bmc.bytom.io/faucet/)
