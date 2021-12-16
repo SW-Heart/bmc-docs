@@ -12,7 +12,7 @@ we use metamask , and the introduction is as follow:
 
 - NetWork Name: BMC Testnet
 - RPC URL: https://testnet.bmcchain.com
-- Chain ID: 288
+- Chain ID: 189
 - Currency Symbol: BTM
 - Block Explorer URL: (Optional)
 
