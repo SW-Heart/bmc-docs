@@ -31,7 +31,7 @@ const en = [
       { title: 'BAP20 Token', link: '/guide/01_bap20_token.html' },
       { title: 'Token List', link: '/guide/01_token_list.html' }
     ]
-  }
+  },
   {
     title: 'Build Node',
     children: [
