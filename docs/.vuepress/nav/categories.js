@@ -10,6 +10,9 @@ const zh = [
       { title: '工具', link: '/zh/guide/01_tools.html' },
       { title: 'BAP20资产', link: '/zh/guide/01_bap20_token.html' },
       { title: '资产合约列表', link: '/zh/guide/01_token_list.html' }
+    ],
+    children: [
+      { title: '构建全节点', link: '/zh/guide/02_install_bmc_node.html' }
     ]
   }
 ];
@@ -24,6 +27,9 @@ const en = [
       { title: 'Tools', link: '/guide/01_tools.html' },
       { title: 'BAP20 Token', link: '/guide/01_bap20_token.html' },
       { title: 'Token List', link: '/guide/01_token_list.html' }
+    ],
+    children: [
+      { title: 'Install Node', link: '/guide/02_install_bmc_node.html' }
     ]
   }
 ];

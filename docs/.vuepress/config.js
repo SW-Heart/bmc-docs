@@ -42,7 +42,7 @@ module.exports = {
         nav: require('./nav/en'),
         sidebar: {
           '/api/': getApiSidebar(),
-          '/guide/': getGuideSidebar('Getting Started'),
+          '/guide/': getGuideSidebar('Getting Started','Install Node')
         },
       },
       '/zh/': {
@@ -57,7 +57,7 @@ module.exports = {
         nav: require('./nav/zh'),
         sidebar: {
           '/zh/api/': getApiSidebar(),
-          '/zh/guide/': getGuideSidebar('快速入门'),
+          '/zh/guide/': getGuideSidebar('快速入门','安装全节点'),
         }
       }
     },
@@ -121,7 +121,7 @@ function getApiSidebar () {
   ]
 }
 
-function getGuideSidebar (groupA) {
+function getGuideSidebar (groupA,groupB) {
   return [
     {
       title: groupA,
@@ -134,6 +134,13 @@ function getGuideSidebar (groupA) {
             '01_tools',
             '01_bap20_token',
             '01_token_list'
+      ]
+    },
+    {
+      title: groupB,
+      collapsable: true,
+      children: [
+            '02_install_bmc_node'
       ]
     }
   ]
