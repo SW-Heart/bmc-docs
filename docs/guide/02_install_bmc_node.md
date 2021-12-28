@@ -27,7 +27,7 @@ git clone https://github.com/Bytom/bmc.git
 ## Build source code
 
 ```shell
-cd $GOPATH/src/github.com/go-ethereum/ethereum/cmd/geth 
+cd bmc-main
 make geth 
 ```
 
@@ -43,10 +43,12 @@ you can see the file in `/bmc-main/build/bin`
 
 ### Download  
 
-Download [testnet.zip](https://github.com/Bytom/bmc/releases/download/v.1.0.0/testnet.zip) or [mainnet.zip]()(todo...)
+Download the necessary configuration files. [testnet.zip](https://github.com/Bytom/bmc/releases/download/v.1.0.0/testnet.zip) or [mainnet.zip]()(todo...)
+Unzip it and you'll see two files  `genesis.json` and `config.toml`.
 
 ### Init
 
+Add the configuration file(`genesis.json` and `config.toml`) to directory `/bmc-mian/build/bin`
 go to ```/bmc-main/build/bin``` 
 
 ```shell
@@ -58,6 +60,7 @@ geth  --datadir {{datadir}}  init genesis.json
 ```shell
 geth --config config.toml --datadir {{datadir}}  --cache 8000  --txlookuplimit 0
 ```
+`{datadir}` :You can specify your own path and consistent with the following.
 
 ### Check the Node
 
@@ -77,3 +80,21 @@ Connect BMC network with MetaMask
 | Chain ID        | 188                          | 189                          |
 | RPC URL         | https://mainnet.bmcchain.com | https://testnet.bmcchain.com |
 | Currency Symbol | BTM                          | BTM                          |
+
+##  The possible problem
+
+1. When you execute command `make geth`, if :
+
+```
+# runtime/cgo
+_cgo_export.c:3:10: fatal error: stdlib.h: No such file or directory
+    3 | #include <stdlib.h>
+      |          ^~~~~~~~~~
+compilation terminated.
+util.go:46: exit status 2
+exit status 1
+make: *** [Makefile:16: geth] Error 1
+```
+
+You can use `sudo apt-get install build-essential` to  solve the problem.
+
