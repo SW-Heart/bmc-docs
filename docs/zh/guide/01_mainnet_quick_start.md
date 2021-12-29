@@ -1,4 +1,4 @@
-# Mainnet Quick Start
+# 主网快速入门
 
 - 网络名称：BMC
 - RPC URL:  [https://mainnet.bmcchain.com](https://mainnet.bmcchain.com)
