@@ -1,4 +1,4 @@
-# Introduction
+# 简介
 
 ## 什么是比原链侧链（BMC）？
 
