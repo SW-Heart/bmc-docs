@@ -1,12 +1,12 @@
-# Token List
+# 资产合约列表
 
-## Mainnet List
+## 主网代币列表
 
 
 
-## Testnet List
+## 测试网代币列表
 
-| Symbol | Contract Address  | Decimals |
+| 名称 | 合约地址  | 精度 |
 | ---- | ---- | ---- |
 | WBTM | 0x0b45Ad27866C8E05ED610cd8A0ec78de94B18202 | 18  |
 | ETH  | 0xAfac8405A87665B94528130049d3bD1FCB2B7FCc | 18  |
