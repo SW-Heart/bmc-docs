@@ -17,6 +17,12 @@ const zh = [
     children: [
       { title: '构建全节点', link: '/zh/guide/02_install_bmc_node.html' }
     ]
+  },
+  {
+    title: '智能合约',
+    children: [
+      { title: '发行Token', link: '/zh/guide/03_issue_token.html' }
+    ]
   }
 ];
 const en = [
@@ -35,7 +41,13 @@ const en = [
   {
     title: 'Build Node',
     children: [
-      { title: 'Install Node', link: '/zh/guide/02_install_bmc_node.html' }
+      { title: 'Install Node', link: '/guide/02_install_bmc_node.html' }
+    ]
+  },
+  {
+    title: 'Smart Contract',
+    children: [
+      { title: 'Install Node', link: '/guide/03_issue_token.html' }
     ]
   }
 ];
