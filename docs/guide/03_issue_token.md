@@ -1,6 +1,6 @@
 ## ISSUE TOKEN
 
-### 1.Prepare ERC20 contract
+### 1.Prepare BAP20 contract
 
 We use Remix to write, compile, and deploy smart contracts.
 
