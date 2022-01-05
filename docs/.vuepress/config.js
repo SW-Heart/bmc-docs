@@ -42,7 +42,7 @@ module.exports = {
         nav: require('./nav/en'),
         sidebar: {
           '/api/': getApiSidebar(),
-          '/guide/': getGuideSidebar('Getting Started','Install Node')
+          '/guide/': getGuideSidebar('Getting Started','Install Node','Smart Contract')
         },
       },
       '/zh/': {
@@ -57,7 +57,7 @@ module.exports = {
         nav: require('./nav/zh'),
         sidebar: {
           '/zh/api/': getApiSidebar(),
-          '/zh/guide/': getGuideSidebar('快速入门','安装全节点'),
+          '/zh/guide/': getGuideSidebar('快速入门','安装全节点','智能合约'),
         }
       }
     },
@@ -121,7 +121,7 @@ function getApiSidebar () {
   ]
 }
 
-function getGuideSidebar (groupA,groupB) {
+function getGuideSidebar (groupA,groupB,groupC) {
   return [
     {
       title: groupA,
@@ -141,6 +141,13 @@ function getGuideSidebar (groupA,groupB) {
       collapsable: true,
       children: [
             '02_install_bmc_node'
+      ]
+    },
+    {
+      title: groupC,
+      collapsable: true,
+      children: [
+            '03_issue_token'
       ]
     }
   ]
