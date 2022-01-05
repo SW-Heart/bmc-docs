@@ -47,7 +47,7 @@ const en = [
   {
     title: 'Smart Contract',
     children: [
-      { title: 'Install Node', link: '/guide/03_issue_token.html' }
+      { title: 'Issue Token', link: '/guide/03_issue_token.html' }
     ]
   }
 ];
