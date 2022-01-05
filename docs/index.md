@@ -37,7 +37,7 @@ footer:
       - title: White Paper
         href: https://cdn.bytom.io/res/WhitePaper-Bytom%202.0-cn.pdf
 
-  copyRight: Copyright ©2021 bytom.io
+  copyRight: Copyright ©2022 bytom.io
 pageClass: by-home
 ---
 
