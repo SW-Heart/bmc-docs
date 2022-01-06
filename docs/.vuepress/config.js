@@ -147,6 +147,7 @@ function getGuideSidebar (groupA,groupB,groupC) {
       title: groupC,
       collapsable: true,
       children: [
+            '03_contract_introduction',
             '03_issue_token'
       ]
     }
