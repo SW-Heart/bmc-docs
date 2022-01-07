@@ -140,7 +140,8 @@ function getGuideSidebar (groupA,groupB,groupC) {
       title: groupB,
       collapsable: true,
       children: [
-            '02_install_bmc_node'
+            '02_install_bmc_node',
+            '02_bmc_api'
       ]
     },
     {
