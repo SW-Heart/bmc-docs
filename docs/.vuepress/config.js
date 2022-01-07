@@ -141,7 +141,8 @@ function getGuideSidebar (groupA,groupB,groupC) {
       collapsable: true,
       children: [
             '02_install_bmc_node',
-            '02_bmc_api'
+            '02_bmc_api',
+            '02_bmc_cli'
       ]
     },
     {
