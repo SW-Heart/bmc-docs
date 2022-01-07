@@ -15,7 +15,8 @@ const zh = [
   {
     title: '构建全节点',
     children: [
-      { title: '构建全节点', link: '/zh/guide/02_install_bmc_node.html' }
+      { title: '构建全节点', link: '/zh/guide/02_install_bmc_node.html' },
+      { title: '全节点 API', link: '/zh/guide/02_bmc_api.html' }
     ]
   },
   {
@@ -42,7 +43,8 @@ const en = [
   {
     title: 'Build Node',
     children: [
-      { title: 'Install Node', link: '/guide/02_install_bmc_node.html' }
+      { title: 'Install Node', link: '/guide/02_install_bmc_node.html' },
+      { title: 'BMC API', link: '/guide/02_bmc_api.html' }
     ]
   },
   {
