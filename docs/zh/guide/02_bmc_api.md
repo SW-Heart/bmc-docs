@@ -1,6 +1,6 @@
 ## Node API
 
-### How to use API
+### 如何去使用 API
 
 | Client   | URL   |
 |:--:   |:--:   |
@@ -8,7 +8,7 @@
 
 ### Go
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -18,7 +18,7 @@ curl --location --request POST 'http://localhost:8545' \
     "id": 12
 }'
 
-//response
+//响应
 {
 "jsonrpc":"2.0",
 "id":12,
@@ -26,7 +26,7 @@ curl --location --request POST 'http://localhost:8545' \
 }
 ```
 
-### API method
+### API 方法
 
 * [`eth_blockNumber`](#eth_blockNumber)
 * [`eth_getBlockByNumber`](#eth_getBlockByNumber)
@@ -43,22 +43,29 @@ curl --location --request POST 'http://localhost:8545' \
 
 #### `eth_blockNumber`
 
-It is to return the number of most recent block,it is a hex encoded unsigned integer.
+返回当前块高度。
 
-##### Parameters
-
-none
-
-##### Returns
+##### 参数
 
 `Object`:
 
-- `String` - *Number*,the number of most recent block.(pattern:^0x([1-9a-f]+[0-9a-f]*|0)$)
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*，空
+- `String` - *id*
 
-##### Example
+##### 返回值
+
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*, 返回当前区块高度（^0x（[1-9a-f]+[0-9a-f]*|0）$）
+
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -68,7 +75,7 @@ curl --location --request POST 'http://localhost:8545' \
     "id": 12
 }'
 
-//response
+//响应
 {
 "jsonrpc":"2.0",
 "id":12,
@@ -77,44 +84,53 @@ curl --location --request POST 'http://localhost:8545' \
 ```
 #### `eth_getBlockByNumber`
 
-Returns information about a block number(hex encoded unsigned integer).
+按区块编号（十六进制编码的无符号整数）返回有关区块的信息。
 
-##### Parameters
+##### 参数
+
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *method*，方法名
+- `String` & `Boolean`- *params*，参数
+  - `String` - *Block Number*，区块号
+  - `Boolean`, 如果为 true，则返回完整的交易对象，如果为 false，则仅返回交易的哈希值。
+- `String` - *id*
+
+##### 返回值
 
 `Object`:
 
-- `String` - *Number*,hex encoded unsigned integer(pattern:^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `bool` - *hydrated*,Hydrated transactions
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result* 
+  {
+  - `String` - *difficulty*，难度值（ ^0x[0-9a-f]*$）
+  - `String` - *extraData*，额外数据（ ^0x[0-9a-f]*$）
+  - `String` - *gasLimit*，燃料限制（^0x([1-9a-f]+[0-9a-f]*|0)$）
+  - `String` - *gasUsed*，使用的燃料（ ^0x([1-9a-f]+[0-9a-f]*|0)$）
+  - `String` - *hash*，哈希
+  - `String` - *logsBloom*，Bloom filter(pattern - ^0x[0-9a-f]{512}$).
+  - `String` - *miner*，Coinbase 矿工（^0x[0-9,a-f,A-F]{40}$）
+  - `String` - *mixHash*，混合哈希（^0x[0-9a-f]{64}$）
+  - `String` - *nonce*，随机数（^0x[0-9a-f]*$）
+  - `String` - *Number*，区块号（^0x([1-9a-f]+[0-9a-f]*|0)$）
+  - `String` - *parentHash*，父区块哈希（^0x[0-9a-f]{64}$）
+  - `String` - *receiptsRoot*，根哈希（^0x[0-9a-f]{64}$）
+  - `String` - *sha3Uncles*，叔块哈希（^0x[0-9a-f]{64}$）
+  - `String` - *size*，区块大小（^0x([1-9a-f]+[0-9a-f]*|0)$）
+  - `String` - *stateRoot*，状态根（^0x[0-9a-f]{64}$）
+  - `String` - *timestamp*，时间戳（^0x([1-9a-f]+[0-9a-f]*|0)$）
+  - `String` - *totalDifficulty*，总难度值（^0x([1-9a-f]+[0-9a-f]*|0)$）
+  - `String` - *transactions*，交易
+  - `String` - *transactionsRoot*，交易的哈希根（^0x[0-9a-f]{64}$）
+  - `String` - *uncles* 
+}
 
-##### Returns
-
-
-`Object`:
-- `String` - *parentHash*,Parent block hash(pattern:^0x[0-9a-f]{64}$).
-- `String` - *sha3Uncles*,Ommers hash(pattern - ^0x[0-9a-f]{64}$)
-- `String` - *miner*,miner of  Coinbase(pattern - ^0x[0-9,a-f,A-F]{40}$).
-- `String` - *stateRoot*,the stateRoot(pattern - ^0x[0-9a-f]{64}$).
-- `String` - *transactionsRoot*,the root of transactions(pattern - ^0x[0-9a-f]{64}$).
-- `String` - *receiptsRoot*,Receipts root(pattern - ^0x[0-9a-f]{64}$).
-- `String` - *logsBloom*,Bloom filter(pattern - ^0x[0-9a-f]{512}$).
-- `String` - *difficulty*,Difficulty(pattern - ^0x[0-9a-f]*$).
-- `String` - *Number*,Number(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *gasLimit*,Gas limit(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *gasUsed*,Gas used(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *timestamp*,timestamp(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *extraData*,Extra data(pattern - ^0x[0-9a-f]*$).
-- `String` - *mixHash*,mixHash(pattern - ^0x[0-9a-f]{64}$).
-- `String` - *nonce*,Nonce(pattern - ^0x[0-9a-f]*$).
-- `String` - *totalDifficulty*Total difficult(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
-- `String` - *baseFeePerGas*,Base fee per gas(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *size*,Block size(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *transactions*
-- `String` - *uncles*
-
-##### Example
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBlockByNumber",
@@ -122,11 +138,12 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
     "id": 12
 }'
 
-//Respond
+//响应
 {
 "jsonrpc":"2.0",
 "id":12,
-"result":{"difficulty":"0x2",
+"result":{
+"difficulty":"0x2",
 "extraData":"0xd883010000846765746888676f312e31332e34856c696e7578000000b27786dcf244b57773227818910a33c3af6ed4c4cd43e71694bc33aeec38e01add410948445bae6221179c480240cc9a185e9e1d3e582023dee006f71c0e0f4ebc36ffb500",
 "gasLimit":"0x1c9c380",
 "gasUsed":"0x0",
@@ -143,30 +160,36 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 "stateRoot":"0x2813cddc28afe8313026fbb878ff5de2625b8a903af20eea899db233e3059f32",
 "timestamp":"0x61d68803",
 "totalDifficulty":"0x124cc3",
-"transactions":[],"transactionsRoot":"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+"transactions":[],
+"transactionsRoot":"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
 "uncles":[]}}
 ```
 
 #### `eth_getBlockTransactionCountByNumber`
 
-Returns the number of transactions in a block from a block matching the given block number.
+返回给定区块号的总交易数。
 
-##### Parameters
-
-`Object`:
-
-- `String` - *Block number*,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-
-##### Returns
+##### 参数
 
 `Object`:
 
-- `String` - *Transaction count*,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*, 区块编号：十六进制编码的无符号整数（^0x([1-9a-f]+[0-9a-f]*|0)$）。
+- `String` - *id*
 
-##### Example
+##### 返回值
+
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result* ,交易计数，十六进制编码的无符号整数（^0x([1-9a-f]+[0-9a-f]*|0)$）
+
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBlockTransactionCountByNumber",
@@ -174,7 +197,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
     "id": 12
 }'
 
-//Respond
+//响应
 {
 "jsonrpc":"2.0",
 "id":12,
@@ -184,24 +207,29 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 ```
 #### `eth_getUncleCountByBlockNumber`
 
-Returns the number of transactions in a block from a block matching the given block number.
+根据给定区块号，返回块中的交易数。
 
-##### Parameters
-
-`Object`:
-
-- `String` - *Transaction count*,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
-
-##### Returns
+##### 参数
 
 `Object`:
 
-- `String` - *Transaction count*,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*，区块号，十六进制编码的无符号整数（^0x([1-9a-f]+[0-9a-f]*|0)$）
+- `String` - *id*
 
-##### Example
+##### 返回值
+
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*, 交易数（^0x([1-9a-f]+[0-9a-f]*|0)$）
+
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getUncleCountByBlockNumber",
@@ -209,7 +237,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
     "id": 12
 }'
 
-//Respond
+//响应
 {
 "jsonrpc":"2.0",
 "id":12,
@@ -219,22 +247,27 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_syncing`
 
-Returns an object with data about the sync status or false.
+根据 Tendermint 同步协议的详细信息，导出布尔值的同步状态。
 
-##### Parameters
+##### 参数
 
-none
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*，空
+- `String` - *id*
 
-##### Returns
+##### 返回值
 
 `Object`:
 
-- `Bool` - *Not syncing*,Should always return false if not syncing.
+- `String` - *jsonrpc*
+- `String` - *id*
+- `Boolean` - *result*，如果不同步，应该总是返回 false。
 
-##### Example
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_syncing",
@@ -242,7 +275,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
     "id": 12
 }'
 
-//Respond
+//响应
 {
 "jsonrpc": "2.0",
   "id": 12,
@@ -252,22 +285,27 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_accounts`
 
-Return a list of addresses owned by client.
+返回客户端拥有的地址列表。
 
-##### Parameters
+##### 参数
 
-none
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*，空
+- `String` - *id*
 
-##### Returns
+##### 返回值
 
 `Object`:
 
-- `String` - *Accounts*,hex encoded address(pattern - ^0x[0-9,a-f,A-F]{40}$).
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*, *Accounts*,十六进制编码地址（pattern - ^0x[0-9,a-f,A-F]{40}$）
 
-##### Example
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_accounts",
@@ -275,7 +313,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
     "id": 12
 }'
 
-//Respond
+//响应
 {
 "jsonrpc": "2.0",
  "id": 12,
@@ -285,22 +323,29 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_gasPrice`
 
-Return the current price per gas in wei.
+以wei为单位返回每个gas的当前价格。
 
-##### Parameters
-
-none
-
-##### Returns
+##### 参数
 
 `Object`:
 
-- `String` - *Gas price* Gas price(^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*，空
+- `String` - *id*
 
-##### Example
+##### 返回值
+
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*, Gas价格（^0x([1-9a-f]+[0-9a-f]*|0)$）
+
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_gasPrice",
@@ -308,7 +353,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
     "id": 12
 }'
 
-//Respond:
+//响应
 {
 "jsonrpc": "2.0",
 "id": 12,
@@ -318,22 +363,29 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_newBlockFilter`
 
-Creates a filter in the node, to notify when a new block arrives.
+在节点中创建过滤器，用以在新块到达时进行通知。
 
-##### Parameters
-
-none
-
-##### Returns
+##### 参数
 
 `Object`:
 
-- `String` - *Filter*,hex encoded unsigned integer(^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*，空
+- `String` - *id*
 
-##### Example
+##### 返回值
+
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*, 过滤器，一个十六进制编码的无符号整数（^0x([1-9a-f]+[0-9a-f]*|0)$）
+
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_newBlockFilter",
@@ -341,7 +393,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
     "id": 12
 }'
 
-//Respond
+//响应
 {
 "jsonrpc": "2.0",
 "id": 12,
@@ -350,22 +402,29 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 ```
 #### `eth_newPendingTransactionFilter`
 
-Creates a filter in the node, to notify when new pending transactions arrive.
+在节点中创建过滤器，用以在新的待处理交易到达时进行通知。
 
-##### Parameters
-
-none
-
-##### Returns
+##### 参数
 
 `Object`:
 
-- `String` - *TransactionFilter*,hex encoded unsigned integer(^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*，空
+- `String` - *id*
 
-##### Example
+##### 返回值
+
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*, 交易过滤器，十六进制编码的无符号整数（^0x([1-9a-f]+[0-9a-f]*|0)$）
+
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_newPendingTransactionFilter",
@@ -373,7 +432,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
     "id": 12
 }'
 
-//Respond
+//响应
 {
 "jsonrpc": "2.0",
 "id": 12,
@@ -383,24 +442,29 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_uninstallFilter`
 
-Uninstalls a filter with given id.
+删除具有给定过滤器 ID 的过滤器。 如果过滤器已成功卸载，则返回 true，否则返回 false。
 
-##### Parameters
-
-`Object`:
-
-- `String` - *uninstallFilter*, hex encoded unsigned integer(^0x([1-9a-f]+[0-9a-f]*|0)$).
-
-##### Returns
+##### 参数
 
 `Object`:
 
-- `Bool` - *result*
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*，交易哈希
+- `String` - *id*
 
-##### Example
+##### 返回值
+
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *id*
+- `Boolean` - *result*
+
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_uninstallFilter",
@@ -408,7 +472,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
     "id": 12
 }'
 
-//Respond
+//响应
 {
 "jsonrpc": "2.0",
 "id": 12,
@@ -418,22 +482,28 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_mining`
 
-Returns whether the client is actively mining new blocks.
+返回客户端是否正在挖掘新区块。
 
-##### Parameters
-
-none
-
-##### Returns
+##### 参数
 
 `Object`:
 
-- `Bool` - *miningStatus*
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*，空
+- `String` - *id*
 
-##### Example
+##### 返回值
+
+`Object`:
+- `String` - *jsonrpc*
+- `String` - *id*
+- `Bool` - *result*,  挖矿状态
+
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_mining",
@@ -441,7 +511,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
     "id": 12
 }'
 
-//Respond
+//响应
 "jsonrpc": "2.0",
 "id": 12,
 "result":"false"
@@ -449,22 +519,31 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_hashrate`
 
-Return the number of hashes per second that the node is mining with.
+返回节点正在挖矿的每秒哈希数。
 
-##### Parameters
-
-none
-
-##### Returns
+##### 参数
 
 `Object`:
 
-- `String` - *Hashrate*,pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*，空
+- `String` - *id*
 
-##### Example
+##### 返回值
+
+`Object`:
+
+`Object`:
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*
+- `String` - *Hashrate*,哈希（^0x([1-9a-f]+[0-9a-f]*|0)$）
+
+##### 例子
 
 ```js
-//Request
+//请求
 curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_mining",
@@ -472,7 +551,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
     "id": 12
 }'
 
-//Respond
+//响应
 "jsonrpc": "2.0",
 "id": 12,
 "result":"0x0"

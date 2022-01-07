@@ -43,17 +43,24 @@ curl --location --request POST 'http://localhost:8545' \
 
 #### `eth_blockNumber`
 
-It is to return the number of most recent block,it is a hex encoded unsigned integer.
+Returns the current block height.
 
 ##### Parameters
 
-none
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*
+- `String` - *id*
 
 ##### Returns
 
 `Object`:
 
-- `String` - *Number*,the number of most recent block.(pattern:^0x([1-9a-f]+[0-9a-f]*|0)$)
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*,the number of most recent block.(pattern:^0x([1-9a-f]+[0-9a-f]*|0)$)
 
 ##### Example
 
@@ -77,39 +84,48 @@ curl --location --request POST 'http://localhost:8545' \
 ```
 #### `eth_getBlockByNumber`
 
-Returns information about a block number(hex encoded unsigned integer).
+Returns information about a block by block number(hex encoded unsigned integer).
 
 ##### Parameters
 
 `Object`:
 
-- `String` - *Number*,hex encoded unsigned integer(pattern:^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `bool` - *hydrated*,Hydrated transactions
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` & `Boolean`- *params*
+  - `String` - *Block Number*
+  - `Boolean`, If true it returns the full transaction objects, if false only the hashes of the transactions.
+- `String` - *id*
 
 ##### Returns
 
-
 `Object`:
-- `String` - *parentHash*,Parent block hash(pattern:^0x[0-9a-f]{64}$).
-- `String` - *sha3Uncles*,Ommers hash(pattern - ^0x[0-9a-f]{64}$)
-- `String` - *miner*,miner of  Coinbase(pattern - ^0x[0-9,a-f,A-F]{40}$).
-- `String` - *stateRoot*,the stateRoot(pattern - ^0x[0-9a-f]{64}$).
-- `String` - *transactionsRoot*,the root of transactions(pattern - ^0x[0-9a-f]{64}$).
-- `String` - *receiptsRoot*,Receipts root(pattern - ^0x[0-9a-f]{64}$).
-- `String` - *logsBloom*,Bloom filter(pattern - ^0x[0-9a-f]{512}$).
-- `String` - *difficulty*,Difficulty(pattern - ^0x[0-9a-f]*$).
-- `String` - *Number*,Number(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *gasLimit*,Gas limit(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *gasUsed*,Gas used(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *timestamp*,timestamp(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *extraData*,Extra data(pattern - ^0x[0-9a-f]*$).
-- `String` - *mixHash*,mixHash(pattern - ^0x[0-9a-f]{64}$).
-- `String` - *nonce*,Nonce(pattern - ^0x[0-9a-f]*$).
-- `String` - *totalDifficulty*Total difficult(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
-- `String` - *baseFeePerGas*,Base fee per gas(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *size*,Block size(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *transactions*
-- `String` - *uncles*
+
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result* 
+  {
+  - `String` - *difficulty*,Difficulty(pattern - ^0x[0-9a-f]*$).
+  - `String` - *extraData*,Extra data(pattern - ^0x[0-9a-f]*$).
+  - `String` - *gasLimit*,Gas limit(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
+  - `String` - *gasUsed*,Gas used(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
+  - `String` - *hash*
+  - `String` - *logsBloom*,Bloom filter(pattern - ^0x[0-9a-f]{512}$).
+  - `String` - *miner*,miner of  Coinbase(pattern - ^0x[0-9,a-f,A-F]{40}$).
+  - `String` - *mixHash*,mixHash(pattern - ^0x[0-9a-f]{64}$).
+  - `String` - *nonce*,Nonce(pattern - ^0x[0-9a-f]*$).
+  - `String` - *Number*,Number(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
+  - `String` - *parentHash*,Parent block hash(pattern:^0x[0-9a-f]{64}$).
+  - `String` - *receiptsRoot*,Receipts root(pattern - ^0x[0-9a-f]{64}$).
+  - `String` - *sha3Uncles*,Ommers hash(pattern - ^0x[0-9a-f]{64}$)
+  - `String` - *size*,Block size(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
+  - `String` - *stateRoot*,the stateRoot(pattern - ^0x[0-9a-f]{64}$).
+  - `String` - *timestamp*,timestamp(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
+  - `String` - *totalDifficulty*Total difficult(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
+  - `String` - *transactions*
+  - `String` - *transactionsRoot*,the root of transactions(pattern - ^0x[0-9a-f]{64}$).
+  - `String` - *uncles* 
+}
 
 ##### Example
 
@@ -126,7 +142,8 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 {
 "jsonrpc":"2.0",
 "id":12,
-"result":{"difficulty":"0x2",
+"result":{
+"difficulty":"0x2",
 "extraData":"0xd883010000846765746888676f312e31332e34856c696e7578000000b27786dcf244b57773227818910a33c3af6ed4c4cd43e71694bc33aeec38e01add410948445bae6221179c480240cc9a185e9e1d3e582023dee006f71c0e0f4ebc36ffb500",
 "gasLimit":"0x1c9c380",
 "gasUsed":"0x0",
@@ -143,25 +160,31 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 "stateRoot":"0x2813cddc28afe8313026fbb878ff5de2625b8a903af20eea899db233e3059f32",
 "timestamp":"0x61d68803",
 "totalDifficulty":"0x124cc3",
-"transactions":[],"transactionsRoot":"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+"transactions":[],
+"transactionsRoot":"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
 "uncles":[]}}
 ```
 
 #### `eth_getBlockTransactionCountByNumber`
 
-Returns the number of transactions in a block from a block matching the given block number.
+Returns the total transaction count for a given block number.
 
 ##### Parameters
 
 `Object`:
 
-- `String` - *Block number*,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*, a Block number,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *id*
 
 ##### Returns
 
 `Object`:
 
-- `String` - *Transaction count*,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result* ,Transaction count, hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
 
 ##### Example
 
@@ -190,13 +213,18 @@ Returns the number of transactions in a block from a block matching the given bl
 
 `Object`:
 
-- `String` - *Transaction count*,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*,a Block number,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *id*
 
 ##### Returns
 
 `Object`:
 
-- `String` - *Transaction count*,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*, Transaction count, hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
 
 ##### Example
 
@@ -219,17 +247,22 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_syncing`
 
-Returns an object with data about the sync status or false.
+The sync status object may need to be different depending on the details of Tendermint’s sync protocol. However, the ‘synced’ result is simply a boolean, and can easily be derived from Tendermint’s internal sync state.
 
 ##### Parameters
 
-none
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*,null
+- `String` - *id*
 
 ##### Returns
 
 `Object`:
 
-- `Bool` - *Not syncing*,Should always return false if not syncing.
+- `String` - *jsonrpc*
+- `String` - *id*
+- `Boolean` - *result*, Not syncing, Should always return false if not syncing.
 
 ##### Example
 
@@ -256,13 +289,18 @@ Return a list of addresses owned by client.
 
 ##### Parameters
 
-none
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*,null
+- `String` - *id*
 
 ##### Returns
 
 `Object`:
 
-- `String` - *Accounts*,hex encoded address(pattern - ^0x[0-9,a-f,A-F]{40}$).
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*, *Accounts*,hex encoded address(pattern - ^0x[0-9,a-f,A-F]{40}$).
 
 ##### Example
 
@@ -289,13 +327,20 @@ Return the current price per gas in wei.
 
 ##### Parameters
 
-none
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*,null
+- `String` - *id*
 
 ##### Returns
 
 `Object`:
 
-- `String` - *Gas price* Gas price(^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*, Gas price, Gas price(^0x([1-9a-f]+[0-9a-f]*|0)$).
 
 ##### Example
 
@@ -322,13 +367,20 @@ Creates a filter in the node, to notify when a new block arrives.
 
 ##### Parameters
 
-none
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*,null
+- `String` - *id*
 
 ##### Returns
 
 `Object`:
 
-- `String` - *Filter*,hex encoded unsigned integer(^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*, Filter, a hex encoded unsigned integer(^0x([1-9a-f]+[0-9a-f]*|0)$).
 
 ##### Example
 
@@ -354,13 +406,20 @@ Creates a filter in the node, to notify when new pending transactions arrive.
 
 ##### Parameters
 
-none
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*,null
+- `String` - *id*
 
 ##### Returns
 
 `Object`:
 
-- `String` - *TransactionFilter*,hex encoded unsigned integer(^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*, TransactionFilter, hex encoded unsigned integer(^0x([1-9a-f]+[0-9a-f]*|0)$).
 
 ##### Example
 
@@ -383,19 +442,24 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_uninstallFilter`
 
-Uninstalls a filter with given id.
+Removes the filter with the given filter id. Returns true if the filter was successfully uninstalled, otherwise false.
 
 ##### Parameters
 
 `Object`:
 
-- `String` - *uninstallFilter*, hex encoded unsigned integer(^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*,Hash of a transaction
+- `String` - *id*
 
 ##### Returns
 
 `Object`:
 
-- `Bool` - *result*
+- `String` - *jsonrpc*
+- `String` - *id*
+- `Boolean` - *result*
 
 ##### Example
 
@@ -422,13 +486,19 @@ Returns whether the client is actively mining new blocks.
 
 ##### Parameters
 
-none
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*
+- `String` - *id*
 
 ##### Returns
 
 `Object`:
-
-- `Bool` - *miningStatus*
+- `String` - *jsonrpc*
+- `String` - *id*
+- `Bool` - *result*,  miningStatus
 
 ##### Example
 
@@ -453,12 +523,21 @@ Return the number of hashes per second that the node is mining with.
 
 ##### Parameters
 
-none
+`Object`:
+
+- `String` - *jsonrpc*
+- `String` - *method*
+- `String` - *params*
+- `String` - *id*
 
 ##### Returns
 
 `Object`:
 
+`Object`:
+- `String` - *jsonrpc*
+- `String` - *id*
+- `String` - *result*
 - `String` - *Hashrate*,pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$
 
 ##### Example
