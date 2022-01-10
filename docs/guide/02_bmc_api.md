@@ -18,7 +18,7 @@ curl --location --request POST 'http://localhost:8545' \
     "id": 12
 }'
 
-//response
+//Response
 {
 "jsonrpc":"2.0",
 "id":12,
@@ -30,7 +30,10 @@ curl --location --request POST 'http://localhost:8545' \
 
 * [`eth_blockNumber`](#eth_blockNumber)
 * [`eth_getBlockByNumber`](#eth_getBlockByNumber)
+* [`eth_getBlockByHash`](#eth_getBlockByHash)
 * [`eth_getBlockTransactionCountByNumber`](#eth_getBlockTransactionCountByNumber)
+* [`eth_getBlockTransactionCountByHash`](#eth_getBlockTransactionCountByHash)
+* [`eth_getUncleCountByBlockHash`](#eth_getUncleCountByBlockHash)
 * [`eth_getUncleCountByBlockNumber`](#eth_getUncleCountByBlockNumber)
 * [`eth_syncing`](#eth_syncing)
 * [`eth_accounts`](#eth_accounts)
@@ -47,20 +50,13 @@ Returns the current block height.
 
 ##### Parameters
 
-`Object`:
-
-- `String` - *jsonrpc*
-- `String` - *method*
-- `String` - *params*
-- `String` - *id*
+None
 
 ##### Returns
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *id*
-- `String` - *result*,the number of most recent block.(pattern:^0x([1-9a-f]+[0-9a-f]*|0)$)
+- `String` - *result*,Returns the current block height
 
 ##### Example
 
@@ -75,7 +71,7 @@ curl --location --request POST 'http://localhost:8545' \
     "id": 12
 }'
 
-//response
+//Response
 {
 "jsonrpc":"2.0",
 "id":12,
@@ -90,41 +86,36 @@ Returns information about a block by block number(hex encoded unsigned integer).
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *method*
 - `String` & `Boolean`- *params*
   - `String` - *Block Number*
   - `Boolean`, If true it returns the full transaction objects, if false only the hashes of the transactions.
-- `String` - *id*
 
 ##### Returns
 
-`Object`:
+`Object` - The matching block object, or null if the block is not found, the structure is as follows:
 
-- `String` - *jsonrpc*
-- `String` - *id*
 - `String` - *result* 
   {
-  - `String` - *difficulty*,Difficulty(pattern - ^0x[0-9a-f]*$).
-  - `String` - *extraData*,Extra data(pattern - ^0x[0-9a-f]*$).
-  - `String` - *gasLimit*,Gas limit(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-  - `String` - *gasUsed*,Gas used(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-  - `String` - *hash*
-  - `String` - *logsBloom*,Bloom filter(pattern - ^0x[0-9a-f]{512}$).
-  - `String` - *miner*,miner of  Coinbase(pattern - ^0x[0-9,a-f,A-F]{40}$).
-  - `String` - *mixHash*,mixHash(pattern - ^0x[0-9a-f]{64}$).
-  - `String` - *nonce*,Nonce(pattern - ^0x[0-9a-f]*$).
-  - `String` - *Number*,Number(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-  - `String` - *parentHash*,Parent block hash(pattern:^0x[0-9a-f]{64}$).
-  - `String` - *receiptsRoot*,Receipts root(pattern - ^0x[0-9a-f]{64}$).
-  - `String` - *sha3Uncles*,Ommers hash(pattern - ^0x[0-9a-f]{64}$)
-  - `String` - *size*,Block size(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-  - `String` - *stateRoot*,the stateRoot(pattern - ^0x[0-9a-f]{64}$).
-  - `String` - *timestamp*,timestamp(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-  - `String` - *totalDifficulty*Total difficult(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
-  - `String` - *transactions*
-  - `String` - *transactionsRoot*,the root of transactions(pattern - ^0x[0-9a-f]{64}$).
-  - `String` - *uncles* 
+  - `String` - *difficulty*,The difficulty value of the block, as an integer.
+  - `String` - *extraData*,Block extra data.
+  - `String` - *gasLimit*,The maximum amount of gas allowed for this block.
+  - `String` - *gasUsed*,The total gas used by all transactions in this block.
+  - `String` - *hash*,The block hash, the pending block is null.
+  - `String` - *logsBloom*,Bloom filter for the block log, pending blocks are null.
+  - `String` - *miner*,The receiving account of mining rewards.
+  - `String` - *mixHash*,mixHash
+  - `String` - *nonce*,nonce
+  - `String` - *Number*,The block number, the pending block is null.
+  - `String` - *parentHash*,Parent block hash.
+  - `String` - *receiptsRoot*,The root node of the block transaction receipt tree.
+  - `String` - *sha3Uncles*,The SHA3 hash of the uncle data in the block.
+  - `String` - *size*,Block size, the number of bytes in this block.
+  - `String` - *stateRoot*,The root node of the final state tree of the block.
+  - `String` - *timestamp*,timestamp
+  - `String` - *totalDifficulty*,The total difficulty on the chain as of this block.
+  - `String` - *transactions*,An array of transaction objects, or a 32-byte long array of transaction hashes.
+  - `String` - *transactionsRoot*,Transaction data root node.
+  - `String` - *uncles* ,Array of uncle block hashes.
 }
 
 ##### Example
@@ -165,6 +156,81 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 "uncles":[]}}
 ```
 
+#### `eth_getBlockByHash`
+
+##### Parameters
+
+`Object`:
+
+- `String` - *Block Number*, 32-byte block hash.
+- `Boolean`, If true it returns the full transaction objects, if false only the hashes of the transactions.
+
+##### Returns
+
+`Object` - The matching block object, or null if the block is not found, the structure is as follows:
+
+- `String` - *result* 
+  {
+  - `String` - *difficulty*,The difficulty value of the block, as an integer.
+  - `String` - *extraData*,Block extra data.
+  - `String` - *gasLimit*,The maximum amount of gas allowed for this block.
+  - `String` - *gasUsed*,The total gas used by all transactions in this block.
+  - `String` - *hash*,The block hash, the pending block is null.
+  - `String` - *logsBloom*,Bloom filter for the block log, pending blocks are null.
+  - `String` - *miner*,The receiving account of mining rewards.
+  - `String` - *mixHash*,mixHash
+  - `String` - *nonce*,nonce
+  - `String` - *Number*,The block number, the pending block is null.
+  - `String` - *parentHash*,Parent block hash.
+  - `String` - *receiptsRoot*,The root node of the block transaction receipt tree.
+  - `String` - *sha3Uncles*,The SHA3 hash of the uncle data in the block.
+  - `String` - *size*,Block size, the number of bytes in this block.
+  - `String` - *stateRoot*,The root node of the final state tree of the block.
+  - `String` - *timestamp*,timestamp
+  - `String` - *totalDifficulty*,The total difficulty on the chain as of this block.
+  - `String` - *transactions*,An array of transaction objects, or a 32-byte long array of transaction hashes.
+  - `String` - *transactionsRoot*,Transaction data root node.
+  - `String` - *uncles* ,Array of uncle block hashes.
+}
+
+##### Example
+
+```js
+//Request
+curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockByHash",
+    "params": ["0x92765",true],
+    "id": 12
+}'
+
+//Respond
+{
+"jsonrpc":"2.0",
+"id":12,
+"result":{
+"difficulty":"0x2",
+"extraData":"0xd883010000846765746888676f312e31332e34856c696e7578000000b27786dcf244b57773227818910a33c3af6ed4c4cd43e71694bc33aeec38e01add410948445bae6221179c480240cc9a185e9e1d3e582023dee006f71c0e0f4ebc36ffb500",
+"gasLimit":"0x1c9c380",
+"gasUsed":"0x0",
+"hash":"0x66f2ef5b9eddaa63b5501dec4a3d6740c914ddf6419aec1771479c6476454a11",
+"logsBloom":"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+"miner":"0x52093c7d03be906c37e0ecb42fd0d9ea1cfb1c0a",
+"mixHash":"0x0000000000000000000000000000000000000000000000000000000000000000",
+"nonce":"0x0000000000000000",
+"number":"0x92765",
+"parentHash":"0xd301cd0fe5752cd5a6395f926a195e8350f38cab1287316cc3a67bd87b7f3d0e",
+"receiptsRoot":"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+"sha3Uncles":"0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+"size":"0x262",
+"stateRoot":"0x2813cddc28afe8313026fbb878ff5de2625b8a903af20eea899db233e3059f32",
+"timestamp":"0x61d68803",
+"totalDifficulty":"0x124cc3",
+"transactions":[],
+"transactionsRoot":"0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+"uncles":[]}}
+```
+
 #### `eth_getBlockTransactionCountByNumber`
 
 Returns the total transaction count for a given block number.
@@ -173,18 +239,13 @@ Returns the total transaction count for a given block number.
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *method*
-- `String` - *params*, a Block number,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *id*
+- `String` - *params*, a Block number,hex encoded unsigned integer
 
 ##### Returns
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *id*
-- `String` - *result* ,Transaction count, hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *result* ,Specifies the number of transactions within the block.
 
 ##### Example
 
@@ -205,26 +266,57 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 }
 
 ```
-#### `eth_getUncleCountByBlockNumber`
 
-Returns the number of transactions in a block from a block matching the given block number.
+#### `eth_getBlockTransactionCountByHash`
+
+Returns the number of transactions within the given hash block.
 
 ##### Parameters
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *method*
-- `String` - *params*,a Block number,hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$).
-- `String` - *id*
+- `String` - *params*, 32-byte block hash.
 
 ##### Returns
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *id*
-- `String` - *result*, Transaction count, hex encoded unsigned integer(pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$)
+- `String` - *result*, Specifies the number of transactions within the block, an integer.
+
+##### Example
+
+```js
+//Request
+curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getBlockTransactionCountByHash",
+    "params": ["0x66f2ef5b9eddaa63b5501dec4a3d6740c914ddf6419aec1771479c6476454a11"],
+    "id": 12
+}'
+
+//Respond
+{
+"jsonrpc":"2.0",
+"id":12,
+"result":"0x0"
+}
+```
+
+#### `eth_getUncleCountByBlockNumber`
+
+Returns the number of uncle blocks for a given block number.
+
+##### Parameters
+
+`Object`:
+
+- `String` - *params*,a Block number,hex encoded unsigned integer
+
+##### Returns
+
+`Object`:
+
+- `String` - *result*, the number of uncle blocks for the specified block.
 
 ##### Example
 
@@ -247,22 +339,23 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_syncing`
 
-The sync status object may need to be different depending on the details of Tendermint’s sync protocol. However, the ‘synced’ result is simply a boolean, and can easily be derived from Tendermint’s internal sync state.
+For synchronized clients, the call returns an object describing the synchronization state; for unsynchronized clients, it returns false.
 
 ##### Parameters
 
-- `String` - *jsonrpc*
-- `String` - *method*
-- `String` - *params*,null
-- `String` - *id*
+None
 
 ##### Returns
 
-`Object`:
+`Object` - Sync state object or false.
 
-- `String` - *jsonrpc*
-- `String` - *id*
-- `Boolean` - *result*, Not syncing, Should always return false if not syncing.
+- `Boolean` - *result*, should always return false if out of sync.
+
+The structure of the synchronization object is as follows:
+
+- `String` - *startingBlock*, starting block.
+- `String` - *currentBlock*, the current block.
+- `String` - *highestBlock*, estimated highest block.
 
 ##### Example
 
@@ -289,18 +382,13 @@ Return a list of addresses owned by client.
 
 ##### Parameters
 
-- `String` - *jsonrpc*
-- `String` - *method*
-- `String` - *params*,null
-- `String` - *id*
+None
 
 ##### Returns
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *id*
-- `String` - *result*, *Accounts*,hex encoded address(pattern - ^0x[0-9,a-f,A-F]{40}$).
+- `String` - *result*, A list of address strings held by the client.
 
 ##### Example
 
@@ -327,20 +415,13 @@ Return the current price per gas in wei.
 
 ##### Parameters
 
-`Object`:
-
-- `String` - *jsonrpc*
-- `String` - *method*
-- `String` - *params*,null
-- `String` - *id*
+None
 
 ##### Returns
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *id*
-- `String` - *result*, Gas price, Gas price(^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *result*, Integer, the current gas price in wei.
 
 ##### Example
 
@@ -363,24 +444,17 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_newBlockFilter`
 
-Creates a filter in the node, to notify when a new block arrives.
+Create a filter in the node to be notified when a new block is generated. To check for state changes, call `eth_getFilterChanges`.
 
 ##### Parameters
 
-`Object`:
-
-- `String` - *jsonrpc*
-- `String` - *method*
-- `String` - *params*,null
-- `String` - *id*
+None
 
 ##### Returns
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *id*
-- `String` - *result*, Filter, a hex encoded unsigned integer(^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *result*,filter number.
 
 ##### Example
 
@@ -402,24 +476,17 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 ```
 #### `eth_newPendingTransactionFilter`
 
-Creates a filter in the node, to notify when new pending transactions arrive.
+Create a filter in the node to be notified when pending transactions are generated. To check for state changes, call `eth_getFilterChanges`.
 
 ##### Parameters
 
-`Object`:
-
-- `String` - *jsonrpc*
-- `String` - *method*
-- `String` - *params*,null
-- `String` - *id*
+None
 
 ##### Returns
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *id*
-- `String` - *result*, TransactionFilter, hex encoded unsigned integer(^0x([1-9a-f]+[0-9a-f]*|0)$).
+- `String` - *result*, filter number.
 
 ##### Example
 
@@ -442,24 +509,19 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_uninstallFilter`
 
-Removes the filter with the given filter id. Returns true if the filter was successfully uninstalled, otherwise false.
+Write on the filter with the specified number. This call is always executed when listening is no longer required. Additionally, the filter automatically times out if the `eth_getFilterChanges` call is not received within a certain period of time.
 
 ##### Parameters
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *method*
-- `String` - *params*,Hash of a transaction
-- `String` - *id*
+- `String` - *params*,filter number.
 
 ##### Returns
 
 `Object`:
 
-- `String` - *jsonrpc*
-- `String` - *id*
-- `Boolean` - *result*
+- `Boolean` - *result*,Returns true if the uninstall was successful, false otherwise.
 
 ##### Example
 
@@ -486,19 +548,13 @@ Returns whether the client is actively mining new blocks.
 
 ##### Parameters
 
-`Object`:
-
-- `String` - *jsonrpc*
-- `String` - *method*
-- `String` - *params*
-- `String` - *id*
+None
 
 ##### Returns
 
 `Object`:
-- `String` - *jsonrpc*
-- `String` - *id*
-- `Bool` - *result*,  miningStatus
+
+- `Bool` - *result*,  Returns true when the client is mining, otherwise returns false.
 
 ##### Example
 
@@ -519,26 +575,17 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_hashrate`
 
-Return the number of hashes per second that the node is mining with.
+Returns the number of hashes the node can compute per second when mining.
 
 ##### Parameters
 
-`Object`:
-
-- `String` - *jsonrpc*
-- `String` - *method*
-- `String` - *params*
-- `String` - *id*
+None
 
 ##### Returns
 
 `Object`:
 
-`Object`:
-- `String` - *jsonrpc*
-- `String` - *id*
-- `String` - *result*
-- `String` - *Hashrate*,pattern - ^0x([1-9a-f]+[0-9a-f]*|0)$
+- `String` - *Hashrate*,The number of hashes computed per second.
 
 ##### Example
 
