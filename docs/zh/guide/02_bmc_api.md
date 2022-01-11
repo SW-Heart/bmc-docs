@@ -43,6 +43,11 @@ curl --location --request POST 'http://localhost:8545' \
 * [`eth_uninstallFilter`](#eth_uninstallFilter)
 * [`eth_mining`](#eth_mining)
 * [`eth_hashrate`](#eth_hashrate)
+* [`eth_getBalance`](#eth_getBalance)
+* [`eth_getTransactionCount`](#eth_getTransactionCount)
+* [`eth_getTransactionReceipt`](#eth_getTransactionReceipt)
+* [`eth_getTransactionByHash`](#eth_getTransactionByHash)
+* [`eth_getCode`](#eth_getCode)
 
 #### `eth_blockNumber`
 
@@ -635,5 +640,232 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 "id": 12,
 "result":"0x0"
 ```
+
+#### `eth_getBalance`
+
+返回指定地址账户的余额。
+
+##### 参数
+
+`Object`:
+
+- `String` - *Address*，20字节，要检查余额的地址
+- `String` - *Block*，整数块编号，或者字符串"latest", "earliest" 或 "pending"
+
+##### 返回值
+
+- `String` - *Balance*，当前余额，单位：wei
+
+##### 示例代码
+
+```js
+//请求
+curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getBalance",
+    "params": ["0x6721c700284022337d0A549Cce25D31fE611C687","latest"],
+    "id": 12
+}'
+
+//响应
+"jsonrpc": "2.0",
+"id": 12,
+"result":"0x9f92c6e342269c00"
+
+```
+
+#### `eth_getTransactionCount`
+
+返回指定地址发生的交易数量。
+
+##### 参数
+
+`Object`:
+
+- `String` - *Address*，20字节，要检查余额的地址
+- `String` - *Block*，整数块编号，或者字符串"latest", "earliest" 或 "pending"
+
+##### 返回值
+
+- `String` - *Number*，从指定地址发出的交易数量，整数
+
+##### 示例代码
+
+```js
+//请求
+curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionCount",
+    "params": ["0x6721c700284022337d0A549Cce25D31fE611C687","latest"],
+    "id": 12
+}'
+
+//响应
+"jsonrpc": "2.0",
+"id": 12,
+"result":"0x9"
+```
+
+#### `eth_getTransactionReceipt`
+
+返回指定交易的收据，使用哈希指定交易。
+
+需要指出的是，挂起的交易其收据无效。
+
+##### 参数
+
+`Object` ：
+
+- `String` - *Transaction hash*，32字节 - 交易哈希。
+
+##### 返回值
+
+`Object` - 交易收据对象，如果收据不存在则为null。交易对象的结构如下：
+
+  - `String` - transactionHash: DATA, 32字节 - 交易哈希
+  - `String` -transactionIndex: QUANTITY - 交易在块内的索引序号
+  - `String` -blockHash: DATA, 32字节 - 交易所在块的哈希
+  - `String` -blockNumber: QUANTITY - 交易所在块的编号
+  - `String` -from: DATA, 20字节 - 交易发送方地址
+  - `String` -to: DATA, 20字节 - 交易接收方地址，对于合约创建交易该值为null
+  - `String` -cumulativeGasUsed: QUANTITY - 交易所在块消耗的gas总量
+  - `String` -gasUsed: QUANTITY - 该次交易消耗的gas用量
+  - `String` -contractAddress: DATA, 20字节 - 对于合约创建交易，该值为新创建的合约地址，否则为null
+  - `String` -logs: Array - 本次交易生成的日志对象数组
+  - `String` -logsBloom: DATA, 256字节 - bloom过滤器，轻客户端用来快速提取相关日志
+
+返回的结果对象中还包括下面二者之一 :
+
+- `String` -root : DATA 32字节，后交易状态根(pre Byzantium)
+- `String` -status: QUANTITY ，1 (成功) 或 0 (失败)
+
+##### 示例代码
+
+```js
+//请求
+curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionReceipt",
+    "params": ["0x3ddeb97b8a3bc800e57ccec58c197e024e3a0030a2b690a31be6e0904195077c"],
+    "id": 12
+}'
+
+//响应
+{
+"jsonrpc":"2.0",
+"id":12,
+"result":{
+"blockhash":"0x1e593ff630122c60f1bfffad1e2ac6ba85ec306ed106eadc89fe58003187c8b6",
+"blockNumber":"0xaf4ea",
+"contractAddress":null,
+"cumulativeGasUsed":"0x5280",
+"from":"0x6721c700284022337d0A549Cce25D31fE611C687",
+"gasUsed":"0x5280",
+"logs":[],
+"logsBloom":"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+"status":"0x1",
+"to":"0xc105d8828b0FB39D4DB00d51CEb4BBcF1c3C6121",
+"transactionHash":"0x3ddeb97b8a3bc800e57ccec58c197e024e3a0030a2b690a31be6e0904195077c",
+"transactionIndex":"0x0",
+"type":"0x0"}}
+```
+
+#### `eth_getTransactionByHash`
+
+返回指定哈希对应的交易。
+
+##### 参数
+
+`Object`:
+
+- `String` - *Transaction hash*，交易哈希
+
+##### 返回值
+
+`Object` - 交易对象，如果没有找到匹配的交易则返回null。结构如下：
+
+  - `String` - hash: DATA, 32字节 - 交易哈希
+  - `String` - nonce: QUANTITY - 本次交易之前发送方已经生成的交易数量
+  - `String` - blockHash: DATA, 32字节 - 交易所在块的哈希，对于挂起块，该值为null
+  - `String` - blockNumber: QUANTITY - 交易所在块的编号，对于挂起块，该值为null
+  - `String` - transactionIndex: QUANTITY - 交易在块中的索引位置，挂起块该值为null
+  - `String` - from: DATA, 20字节 - 交易发送方地址
+  - `String` - to: DATA, 20字节 - 交易接收方地址，对于合约创建交易，该值为null
+  - `String` - value: QUANTITY - 发送的以太数量，单位：wei
+  - `String` - gasPrice: QUANTITY - 发送方提供的gas价格，单位：wei
+  - `String` - gas: QUANTITY - 发送方提供的gas可用量
+  - `String` - input: DATA - 随交易发送的数据
+
+##### 代码示例
+
+```js
+//请求
+curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionByHash",
+    "params": ["0x3ddeb97b8a3bc800e57ccec58c197e024e3a0030a2b690a31be6e0904195077c"],
+    "id": 12
+}'
+
+//响应
+{
+"jsonrpc":"2.0",
+"id":12,
+"result":{
+"blockhash":"Ox1e593ff630122c60f1bfffad1e2ac6ba85ec306edc89fe58003187c8b6",
+"blockNumber":"0xaf4ea",
+"from":"0x6721c700284022337d0A549Cce25D31fE611C687",
+"gas":"0x5208",
+"gasPrice":"0x3b9aca00",
+"hash":"0x3ddeb97b8a3bc800e57ccec58c197e024e3a0030a2b690a31be6e0904195077c",
+"input":"0x",
+"nonce":"0x8",
+"to":"0xc105d8828b0FB39D4DB00d51CEb4BBcF1c3C6121",
+"transactionIndex":"0x0",
+"value":"0xde0b6b3a7640000",
+"type":"0x0",
+"v":"0x19d",
+"r":"0xfee4a2f16498752677d026c6061203aaabe9574204d558d4373cab2586870515"
+"s":"0x158977d6141303150f10ffab0bc769e12d52ae89f69a67e328800cef3be131a6"}}
+
+```
+
+#### `eth_getCode`
+
+返回指定地址的代码。
+
+##### 参数
+
+`Object`:
+
+- `String` - *address*，20字节，地址
+- `String` - *number*， 整数块编号，或字符串"latest"、"earliest" 或"pending"
+
+##### 返回值
+
+- `String` - *Bytecode*，指定地址处的代码
+
+##### 示例代码
+
+```js
+//请求
+curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getCode",
+    "params": ["0x6721c700284022337d0A549Cce25D31fE611C687","latest"],
+    "id": 12
+}'
+
+//响应
+{
+"jsonrpc":"2.0",
+"id":12,
+"result":"0x"
+}
+
+```
+
+
+
 
 
