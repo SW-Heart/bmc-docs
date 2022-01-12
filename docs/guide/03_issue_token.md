@@ -1,4 +1,4 @@
-## ISSUE TOKEN
+## ISSUE BAP20 TOKEN
 
 ### 1.Prepare BAP20 contract
 
