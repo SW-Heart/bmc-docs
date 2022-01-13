@@ -14,46 +14,17 @@
 
 ##### 代码示例
 
-```js
-//请求
-{
-  "id": 2,
-  "jsonrpc": "2.0",
-  "method": "account_signTransaction",
-  "params": [
-    {
-      "from": "0x1923f626bb8dc025849e00f99c25fe2b2f7fb0db",
-      "gas": "0x55555",
-      "maxFeePerGas": "0x1234",
-      "maxPriorityFeePerGas": "0x1234",
-      "input": "0xabcd",
-      "nonce": "0x0",
-      "to": "0x07a565b7ed7d7a678680a4c162885bedbb695fe0",
-      "value": "0x1234"
-    }
-  ]
-}
+交易对象结构大致如下：
 
-//响应
+```js
 {
-  "jsonrpc": "2.0",
-  "id": 2,
-  "result": {
-    "raw": "0xf88380018203339407a565b7ed7d7a678680a4c162885bedbb695fe080a44401a6e4000000000000000000000000000000000000000000000000000000000000001226a0223a7c9bcf5531c99be5ea7082183816eb20cfe0bbc322e97cc5c7f71ab8b20ea02aadee6b34b45bb15bc42d9c09de4a6754e7000908da72d48cc7704971491663",
-    "tx": {
-      "nonce": "0x0",
-      "maxFeePerGas": "0x1234",
-      "maxPriorityFeePerGas": "0x1234",
-      "gas": "0x55555",
-      "to": "0x07a565b7ed7d7a678680a4c162885bedbb695fe0",
-      "value": "0x1234",
-      "input": "0xabcd",
-      "v": "0x26",
-      "r": "0x223a7c9bcf5531c99be5ea7082183816eb20cfe0bbc322e97cc5c7f71ab8b20e",
-      "s": "0x2aadee6b34b45bb15bc42d9c09de4a6754e7000908da72d48cc7704971491663",
-      "hash": "0xeba2df809e7a612a0a0d444ccfa5c839624bdc00dd29e3340d46df3870f8a30e"
-    }
-  }
+  from: "0xEA674fdDe714fd979de3EdF0F56AA9716B898ec8",
+  to: "0xac03bb73b6a9e108530aff4df5077c2b3d481e5a",
+  gasLimit: "21000",
+  maxFeePerGas: "300",
+  maxPriorityFeePerGas: "10",
+  nonce: "0",
+  value: "10000000000"
 }
 ```
 
