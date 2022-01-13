@@ -112,6 +112,12 @@ module.exports = {
 
 function getApiSidebar () {
   return [
+    'bytomrpc',
+    'vaporrpc',
+    'blockmeta',
+    'bapp',
+    'blockcenter',
+    'bycoin'
   ]
 }
 
