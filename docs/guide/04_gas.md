@@ -6,7 +6,7 @@ This tutorial will introduce you to Gas in BMC.
 
 Gas refers to the computational effort required to perform a specific operation on the BMC.
 
-Since each transaction requires computing resources to execute, each transaction needs to be paid, and Gas refers to the cost of a successful transaction. (*Note: Gas on BMC needs to be paid with BTM, and the accuracy of BTM is 10^-18^*)
+Since each transaction requires computing resources to execute, each transaction needs to be paid, and Gas refers to the cost of a successful transaction. (*Note: Gas on BMC needs to be paid with BTM, and the accuracy of BTM is 10<sup>-18</sup>*)
 
 ### Why do gas fees exist ?
 
@@ -14,9 +14,9 @@ Gas fees help ensure the security of the BMC network. There is a charge for ever
 
 ### Gas calculation rules
 
-Let's say Alice had to pay Bob 1 BTM. In the transaction, the gas limit is 21,000 units, and the gas price is 200 *10^-9^ BTM..
+Let's say Alice had to pay Bob 1 BTM. In the transaction, the gas limit is 21,000 units, and the gas price is 200 *10<sup>-9</sup> BTM.
 
-Total fee would have been: `Gas units (limit) * Gas price per unit` i.e  _21,000 * 200 * 10^-9^ = 0.0042 BTM_
+Total fee would have been: _Gas units (limit) * Gas price per unit_ , i.e  _21,000 * 200 * 10<sup>-9</sup> = 0.0042 BTM_
 
 When Alice sent the money, 1.0042 BTM would be deducted from Alice's account. Bob would be credited 1.0000 BTM. Miner would receive 0.0042 BTM.
 
