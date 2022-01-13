@@ -6,7 +6,6 @@ const zh = [
       { title: '简介', link: '/zh/guide/01_introduction.html' },
       { title: '主网快速入门', link: '/zh/guide/01_mainnet_quick_start.html' },
       { title: '测试网快速入门', link: '/zh/guide/01_testnet_quick_start.html' },
-      { title: '基本概念', link: '/zh/guide/01_basics.html' },
       { title: '工具', link: '/zh/guide/01_tools.html' },
       { title: 'BAP20资产', link: '/zh/guide/01_bap20_token.html' },
       { title: '资产合约列表', link: '/zh/guide/01_token_list.html' }
@@ -26,6 +25,14 @@ const zh = [
       { title: '智能合约介绍', link: '/zh/guide/03_contract_introduction.html' },
       { title: '发行BAP20资产', link: '/zh/guide/03_issue_token.html' }
     ]
+  },
+  {
+    title: '基础概念',
+    children: [
+      { title: '账户', link: '/zh/guide/04_account.html' },
+      { title: '交易', link: '/zh/guide/04_transactions.html' },
+      { title: 'Gas费用', link: '/zh/guide/04_gas.html' }
+    ]
   }
 ];
 const en = [
@@ -35,7 +42,6 @@ const en = [
       { title: 'Introduction', link: '/guide/01_introduction.html' },
       { title: 'Mainnet Quick Start', link: '/guide/01_mainnet_quick_start.html' },
       { title: 'Testnet Quick Start', link: '/guide/01_testnet_quick_start.html' },
-      { title: 'Basics', link: '/guide/01_basics.html' },
       { title: 'Tools', link: '/guide/01_tools.html' },
       { title: 'BAP20 Token', link: '/guide/01_bap20_token.html' },
       { title: 'Token List', link: '/guide/01_token_list.html' }
@@ -54,6 +60,14 @@ const en = [
     children: [
       { title: 'Smart Contract Introduction', link: '/guide/03_contract_introduction.html' },
       { title: 'Issue BAP20 Token', link: '/guide/03_issue_token.html' }
+    ]
+  },
+  {
+    title: 'Concept',
+    children: [
+      { title: 'Account', link: '/guide/04_account.html' },
+      { title: 'Transactions', link: '/guide/04_transactions.html' },
+      { title: 'Gas', link: '/guide/04_gas.html' }
     ]
   }
 ];

@@ -23,7 +23,7 @@ Both account types have the ability to:
 
   - Can initiate transactions
 
-  - Transactions between externally-owned accounts can only be BTM/token transfers
+  - Transactions between externally-owned accounts can only be BTM or other token transfers
 
 - **Contract**
 
