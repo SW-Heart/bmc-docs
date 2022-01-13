@@ -16,7 +16,7 @@ Gas fees help ensure the security of the BMC network. There is a charge for ever
 
 Let's say Alice had to pay Bob 1 BTM. In the transaction, the gas limit is 21,000 units, and the gas price is 200 *10^-9^ BTM..
 
-Total fee would have been: `Gas units (limit) * Gas price per unit` i.e `21,000 * 200 = 0.0042 BTM`
+Total fee would have been: `Gas units (limit) * Gas price per unit` i.e  _21,000 * 200 * 10^-9^ = 0.0042 BTM_
 
 When Alice sent the money, 1.0042 BTM would be deducted from Alice's account. Bob would be credited 1.0000 BTM. Miner would receive 0.0042 BTM.
 
@@ -28,5 +28,11 @@ The gas limit is the maximum amount of gas you are willing to spend in a transac
 
 For example, if you set a 50,000 gas limit on a simple BTM transfer. The EVM will consume 21,000 and you will receive the remaining 29,000. However, if you set too little gas, say, for a simple BTM transfer, the gas limit is 20,000. The EVM will cost you 20,000 gas trying to implement the transaction, but it won't complete. The EVM then reverts all changes, but since the miner has done work worth 20k gas, the gas is consumed.
 
+### Gas calculation
 
+If you want to estimate the gas executed by the smart contract, you can refer to the result given by `gasUsed` in Remix or geth.
+
+It is also possible to use the Gas Estimation Chrome plugin -  [Blocknative ETH Gas Estimator](https://chrome.google.com/webstore/detail/blocknative-eth-gas-estim/ablbagjepecncofimgjmdpnhnfjiecfm) 
+
+For specific gas consumption rules, please refer to [Yellow Paper](http://gavwood.com/Paper.pdf)
 
