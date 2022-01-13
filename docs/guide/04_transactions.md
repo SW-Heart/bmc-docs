@@ -1,8 +1,8 @@
-###  Transaction
+##  Transaction
 
 Transactions here refer to operations initiated by externally owned accounts, i.e. accounts managed by humans, not contracts.
 
-##### Trading Information
+### Trading Information
 
 - `recipient` – the receiving address (if an externally-owned account, the transaction will transfer value. If a contract account, the transaction will execute the contract code)
 - `signature` – the identifier of the sender. This is generated when the sender's private key signs the transaction and confirms the sender has authorized this transaction
@@ -12,7 +12,7 @@ Transactions here refer to operations initiated by externally owned accounts, i.
 - `maxPriorityFeePerGas` - the maximum amount of gas to be included as a tip to the miner
 - `maxFeePerGas` - the maximum amount of gas willing to be paid for the transaction (inclusive of `baseFeePerGas` and `maxPriorityFeePerGas`)
 
-##### Example
+### Example
 
 The transaction object will look a little like this:
 
@@ -28,13 +28,13 @@ The transaction object will look a little like this:
 }
 ```
 
-##### Transaction Type
+### Transaction Type
 
 - On BMC there are a few different types of transactions:
   - Regular transactions: a transaction from one wallet to another.
   - Contract deployment transactions: a transaction without a 'to' address, where the data field is used for the contract code
 
-##### Transaction Life Cycle
+### Transaction Life Cycle
 
 Once the transaction has been submitted the following happens:
 

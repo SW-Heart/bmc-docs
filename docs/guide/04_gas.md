@@ -2,17 +2,17 @@
 
 This tutorial will introduce you to Gas in BMC.
 
-#### What is Gas ?
+### What is Gas ?
 
 Gas refers to the computational effort required to perform a specific operation on the BMC.
 
 Since each transaction requires computing resources to execute, each transaction needs to be paid, and Gas refers to the cost of a successful transaction. (*Note: Gas on BMC needs to be paid with BTM, and the accuracy of BTM is 10^-18^*)
 
-#### Why do gas fees exist ?
+### Why do gas fees exist ?
 
 Gas fees help ensure the security of the BMC network. There is a charge for every computation performed on the network, which prevents participants from spamming the network. To prevent unintentional, malicious, infinite loops or other computational waste in the code, each transaction is required to place a limit on the computational steps the code can perform.
 
-#### Gas calculation rules
+### Gas calculation rules
 
 Let's say Alice had to pay Bob 1 BTM. In the transaction, the gas limit is 21,000 units, and the gas price is 200 *10^-9^ BTM..
 
@@ -22,7 +22,7 @@ When Alice sent the money, 1.0042 BTM would be deducted from Alice's account. Bo
 
 The calculation of the gas limit involving smart contracts is more complicated, which will be explained in detail below.
 
-#### What is gas limit ?
+### What is gas limit ?
 
 The gas limit is the maximum amount of gas you are willing to spend in a transaction. More complex transactions involving smart contracts require more computational work, so they require higher gas limits than simple payments. Standard BTM transfers generally require a gas limit of 21,000 units.
 
