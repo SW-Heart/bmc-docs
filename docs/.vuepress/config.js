@@ -121,7 +121,7 @@ function getApiSidebar () {
   ]
 }
 
-function getGuideSidebar (groupA,groupB,groupC) {
+function getGuideSidebar (groupA,groupB,groupC,groupD) {
   return [
     {
       title: groupA,
