@@ -16,7 +16,7 @@ Gas 费用有助于确保 BMC 网络安全。 在网络上执行的每次计算�
 
 假设 Alice 需要支付 1 BTM 给 Bob。 在普通交易中，gas 限额为 21,000 单位，gas 的价格是 200 *10^-9^ BTM。
 
-总费用为:`Gas 单位（限额） * Gas 单价` 例如 `21,000 * 200 * 10^-9^ = 0.0042 BTM`
+总费用为:`Gas 单位（限额） * Gas 单价` 例如： _21,000 * 200 * 10^-9^ = 0.0042 BTM_
 
 当 Alice 汇款时，将从 Alice 账户中扣除 1.0042 BTM。 Bob 将获得 1.0000 BTM。 矿工将得到 0.0042 BTM。
 
@@ -28,7 +28,13 @@ Gas 限额是指您愿意在交易中消耗的最大 gas 数量。 涉及**智�
 
 例如，如果您对简单的 BTM 转账设置 50,000 gas 限额。EVM 将消耗 21,000，您将收到剩余的 29,000。 然而，如果您设置的 gas 太少，比如说，对于简单的 BTM 转账，gas 限额为 20,000。EVM 将消耗您 20,000 gas 试图实现交易，但不会完成。 然后，EVM 会恢复所有变化，但由于矿工已经完成了价值 20k gas 的工作，所以 gas 被消耗掉了。
 
+### Gas计算
 
+如果您想对智能合约执行的Gas做估算的话，可以参考 Remix 或者 geth 中的 `gasUsed` 给的结果。
+
+也可以使用 Gas 估算 Chrome 插件 -  [Blocknative ETH Gas Estimator](https://chrome.google.com/webstore/detail/blocknative-eth-gas-estim/ablbagjepecncofimgjmdpnhnfjiecfm) 
+
+具体的Gas消耗规则请参考[黄皮书](http://gavwood.com/Paper.pdf)
 
 
 
