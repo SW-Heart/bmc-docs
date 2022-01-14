@@ -23,6 +23,7 @@ const zh = [
     title: '智能合约',
     children: [
       { title: '智能合约介绍', link: '/zh/guide/03_contract_introduction.html' },
+      { title: '合约数据类型', link: '/zh/guide/03_types.html' },
       { title: '发行BAP20资产', link: '/zh/guide/03_issue_token.html' }
     ]
   },
@@ -59,6 +60,7 @@ const en = [
     title: 'Smart Contract',
     children: [
       { title: 'Smart Contract Introduction', link: '/guide/03_contract_introduction.html' },
+      { title: 'Contract Data Types', link: '/guide/03_types.html' },
       { title: 'Issue BAP20 Token', link: '/guide/03_issue_token.html' }
     ]
   },
