@@ -31,7 +31,7 @@ footer:
       - title: GitHub
         href: https://github.com/Bytom/bytom
       - title: Wiki
-        href: https://developer.bymov.io/
+        href: https://developer.mov.network/
     - title: About
       list:
       - title: White Paper
