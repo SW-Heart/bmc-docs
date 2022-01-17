@@ -27,7 +27,7 @@ The idea behind this distinction is that `address payable` is an address you can
 
 Type conversions:
 
-Implicit conversions from address payable to address are allowed, whereas conversions from address to address payable must be explicit via payable(<address>).
+Implicit conversions from address payable to address are allowed, whereas conversions from address to address payable must be explicit via payable(address).
 
 #### Contract Types
 
