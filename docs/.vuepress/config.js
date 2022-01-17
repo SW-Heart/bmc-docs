@@ -42,7 +42,7 @@ module.exports = {
         nav: require('./nav/en'),
         sidebar: {
           '/api/': getApiSidebar(),
-          '/guide/': getGuideSidebar('Getting Started','Install Node','Smart Contract')
+          '/guide/': getGuideSidebar('Getting Started','Install Node','Smart Contract','Concept')
         },
       },
       '/zh/': {
@@ -57,7 +57,7 @@ module.exports = {
         nav: require('./nav/zh'),
         sidebar: {
           '/zh/api/': getApiSidebar(),
-          '/zh/guide/': getGuideSidebar('快速入门','安装全节点','智能合约'),
+          '/zh/guide/': getGuideSidebar('快速入门','安装全节点','智能合约','基础概念'),
         }
       }
     },
@@ -121,7 +121,7 @@ function getApiSidebar () {
   ]
 }
 
-function getGuideSidebar (groupA,groupB,groupC) {
+function getGuideSidebar (groupA,groupB,groupC,groupD) {
   return [
     {
       title: groupA,
@@ -130,7 +130,6 @@ function getGuideSidebar (groupA,groupB,groupC) {
             '01_introduction',
             '01_mainnet_quick_start',
             '01_testnet_quick_start',
-            '01_basics',
             '01_tools',
             '01_bap20_token',
             '01_token_list'
@@ -140,14 +139,27 @@ function getGuideSidebar (groupA,groupB,groupC) {
       title: groupB,
       collapsable: true,
       children: [
-            '02_install_bmc_node'
+            '02_install_bmc_node',
+            '02_bmc_api',
+            '02_bmc_cli'
       ]
     },
     {
       title: groupC,
       collapsable: true,
       children: [
-            '03_issue_token'
+            '03_contract_introduction',
+            '03_issue_token',
+            '03_types'
+      ]
+    },
+    {
+      title: groupD,
+      collapsable: true,
+      children: [
+            '04_account',
+            '04_transactions',
+            '04_gas'
       ]
     }
   ]
