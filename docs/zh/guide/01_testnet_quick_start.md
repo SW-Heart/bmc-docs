@@ -18,7 +18,7 @@
 
 - 代币名称: BTM
 
-- 区块链浏览器网址: (可选)
+- 区块链浏览器网址: https://bmctestnet.blockmeta.com/
 
 ![](../img/01/testnet1.png)
 

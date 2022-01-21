@@ -14,7 +14,7 @@ we use metamask , and the introduction is as follow:
 - RPC URL: https://testnet.bmcchain.com
 - Chain ID: 189
 - Currency Symbol: BTM
-- Block Explorer URL: (Optional)
+- Block Explorer URL: https://bmctestnet.blockmeta.com/
 
 ![](../img/01/testnet1.png)
 
