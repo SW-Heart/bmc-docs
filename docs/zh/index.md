@@ -30,7 +30,7 @@ footer:
       - title: GitHub
         href: https://github.com/Bytom/bytom
       - title: 文档
-        href: https://developer.mov.network/
+        href: https://developer.bymov.io/
     - title: 关于我们
       list:
       - title: 白皮书
