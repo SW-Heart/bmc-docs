@@ -6,9 +6,9 @@ const zh = [
       { title: '简介', link: '/zh/guide/01_introduction.html' },
       { title: '主网快速入门', link: '/zh/guide/01_mainnet_quick_start.html' },
       { title: '测试网快速入门', link: '/zh/guide/01_testnet_quick_start.html' },
-      { title: '工具', link: '/zh/guide/01_tools.html' },
       { title: 'BAP20资产', link: '/zh/guide/01_bap20_token.html' },
-      { title: '资产合约列表', link: '/zh/guide/01_token_list.html' }
+      { title: '资产合约列表', link: '/zh/guide/01_token_list.html' },
+      { title: '工具', link: '/zh/guide/01_tools.html' }
     ]
   },
   {
@@ -43,9 +43,9 @@ const en = [
       { title: 'Introduction', link: '/guide/01_introduction.html' },
       { title: 'Mainnet Quick Start', link: '/guide/01_mainnet_quick_start.html' },
       { title: 'Testnet Quick Start', link: '/guide/01_testnet_quick_start.html' },
-      { title: 'Tools', link: '/guide/01_tools.html' },
       { title: 'BAP20 Token', link: '/guide/01_bap20_token.html' },
-      { title: 'Token List', link: '/guide/01_token_list.html' }
+      { title: 'Token List', link: '/guide/01_token_list.html' },
+      { title: 'Tools', link: '/guide/01_tools.html' }
     ]
   },
   {
