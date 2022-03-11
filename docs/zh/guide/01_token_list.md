@@ -2,8 +2,6 @@
 
 ## 主网代币列表
 
-## Mainnet List
-
 | Symbol | Contract Address  | Decimals |
 | ---- | ---- | ---- |
 | WBTM | 0xcd109943f45587D589cAE7b66F3FcF4a3097A288 | 18  |
