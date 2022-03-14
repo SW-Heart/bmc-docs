@@ -48,7 +48,7 @@ make geth
 
 ### 初始化
 
-将配置文件(`genesis.json` 和 `config.toml`) 放入 `/bmc-mian/build/bin`文件夹中
+将配置文件(`genesis.json` 和 `config.toml`) 放入 `/bmc-main/build/bin`文件夹中
 进入 ```/bmc-main/build/bin``` 
 
 ```shell
