@@ -4,12 +4,13 @@
 
 | Client   | URL   |
 |:--:   |:--:   |
-|Go   |http://localhost:8545|
+|Mainnet   |https://mainnet.bmcchain.com|
+|Testnet |https://testnet.bmcchain.com|
 
-### Go
+### Example
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' \
+curl --location --request POST 'https://mainnet.bmcchain.com' \
 --header 'Content-Type: application/json' \
 --data '{
     "jsonrpc": "2.0",
@@ -22,7 +23,7 @@ curl --location --request POST 'http://localhost:8545' \
 {
 "jsonrpc":"2.0",
 "id":12,
-"result":"0x92765"
+"result":"0x32366"
 }
 ```
 
@@ -48,6 +49,8 @@ curl --location --request POST 'http://localhost:8545' \
 * [`eth_getTransactionReceipt`](#eth_getTransactionReceipt)
 * [`eth_getTransactionByHash`](#eth_getTransactionByHash)
 * [`eth_getCode`](#eth_getCode)
+* [`eth_getTransactionByBlockHashAndIndex`](#eth_getTransactionByBlockHashAndIndex)
+* [`eth_getTransactionByBlockNumberAndIndex`](#eth_getTransactionByBlockNumberAndIndex)
 
 #### `eth_blockNumber`
 
@@ -67,7 +70,7 @@ None
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' \
+curl --location --request POST 'https://mainnet.bmcchain.com' \
 --header 'Content-Type: application/json' \
 --data '{
     "jsonrpc": "2.0",
@@ -80,7 +83,7 @@ curl --location --request POST 'http://localhost:8545' \
 {
 "jsonrpc":"2.0",
 "id":12,
-"result":"0x92765"
+"result":"0x32366"
 }
 ```
 #### `eth_getBlockByNumber`
@@ -127,7 +130,7 @@ Returns information about a block by block number(hex encoded unsigned integer).
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBlockByNumber",
     "params": ["0x92765",true],
@@ -202,7 +205,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBlockByHash",
     "params": ["0x92765",true],
@@ -256,10 +259,10 @@ Returns the total transaction count for a given block number.
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBlockTransactionCountByNumber",
-    "params": ["0x92765"],
+    "params": ["0x1"],
     "id": 12
 }'
 
@@ -267,7 +270,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 {
 "jsonrpc":"2.0",
 "id":12,
-"result":"0x0"
+"result":"0x1"
 }
 
 ```
@@ -292,10 +295,41 @@ Returns the number of transactions within the given hash block.
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBlockTransactionCountByHash",
-    "params": ["0x66f2ef5b9eddaa63b5501dec4a3d6740c914ddf6419aec1771479c6476454a11"],
+    "params": ["0x3a871a4c817df1625a054e79bdec02a6842c5db5a5209b3524636dd6c28dbf40"],
+    "id": 12
+}'
+
+//Respond
+{
+"jsonrpc":"2.0",
+"id":12,
+"result":"0x1"
+}
+```
+
+#### `eth_getUncleCountByBlockHash`
+
+Returns the number of uncle blocks of the block with the specified hash.
+
+##### Parameters
+
+- `String` - *params*，32-byte block hash
+
+##### Returns
+
+- `String` - *result*，Specifies the number of uncles for the block, an integer.
+
+##### Example
+
+```js
+//Request
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getUncleCountByBlockHash",
+    "params": ["0xe0dce5b9aa028956bf14101eec5d41008471ccca9f50b8da0968991ba9aeea93"],
     "id": 12
 }'
 
@@ -305,6 +339,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 "id":12,
 "result":"0x0"
 }
+
 ```
 
 #### `eth_getUncleCountByBlockNumber`
@@ -327,10 +362,10 @@ Returns the number of uncle blocks for a given block number.
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getUncleCountByBlockNumber",
-    "params": ["0x92765"],
+    "params": ["0x323f5"],
     "id": 12
 }'
 
@@ -366,7 +401,7 @@ The structure of the synchronization object is as follows:
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_syncing",
     "params": [],
@@ -399,7 +434,7 @@ None
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_accounts",
     "params": [],
@@ -432,7 +467,7 @@ None
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_gasPrice",
     "params": [],
@@ -443,7 +478,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 {
 "jsonrpc": "2.0",
 "id": 12,
-"result":"0x3b9aca00"
+"result":"0x12a05f200"
 }
 ```
 
@@ -465,7 +500,7 @@ None
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_newBlockFilter",
     "params": [],
@@ -476,7 +511,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 {
 "jsonrpc": "2.0",
 "id": 12,
-"result":"0xbffb379bfba8434b4f7b45bc09718300"
+"result":"0xa4d21c5909c3e5355f0095ce3d530ab7"
 }
 ```
 #### `eth_newPendingTransactionFilter`
@@ -497,7 +532,7 @@ None
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_newPendingTransactionFilter",
     "params": [],
@@ -508,7 +543,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 {
 "jsonrpc": "2.0",
 "id": 12,
-"result":"0x11a1e4f3e5e6ead5922574ed4e9b4b2b"
+"result":"0xb899e1d4f0b20082620ac51bee0546ac"
 }
 ```
 
@@ -532,7 +567,7 @@ Write on the filter with the specified number. This call is always executed when
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_uninstallFilter",
     "params": ["0x11a1e4f3e5e6ead5922574ed4e9b4b2b"],
@@ -565,7 +600,7 @@ None
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_mining",
     "params": [],
@@ -596,7 +631,7 @@ None
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_mining",
     "params": [],
@@ -628,7 +663,7 @@ Returns the balance of the account at the specified address.
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBalance",
     "params": ["0x6721c700284022337d0A549Cce25D31fE611C687","latest"],
@@ -661,7 +696,7 @@ Returns the number of transactions that occurred at the specified address.
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getTransactionCount",
     "params": ["0x6721c700284022337d0A549Cce25D31fE611C687","latest"],
@@ -711,7 +746,7 @@ The returned result object also includes one of the following:
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getTransactionReceipt",
     "params": ["0x3ddeb97b8a3bc800e57ccec58c197e024e3a0030a2b690a31be6e0904195077c"],
@@ -768,7 +803,7 @@ Returns the transaction corresponding to the specified hash.
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getTransactionByHash",
     "params": ["0x3ddeb97b8a3bc800e57ccec58c197e024e3a0030a2b690a31be6e0904195077c"],
@@ -817,10 +852,10 @@ Returns the code for the specified address.
 
 ```js
 //Request
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getCode",
-    "params": ["0x6721c700284022337d0A549Cce25D31fE611C687","latest"],
+    "params": ["0x9B3EE91d5f499cB08871dA83AEE5a1f39302Dde8","latest"],
     "id": 12
 }'
 
@@ -833,7 +868,77 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```
 
+#### `eth_getTransactionByBlockHashAndIndex`
 
+Returns the transaction with the specified index sequence number within the specified block.
 
+##### Parameters
 
+`Object`：
+
+- `String` - *Block hash*，32bytes，Block hash。
+- `String` - *Transaction index*，The index number of the transaction within the block.
+
+##### Returns
+
+`Object`：
+
+- `String` - *Transaction informatoin*，Transaction informatoin.
+
+##### Example
+
+```js
+//Request
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionByBlockHashAndIndex",
+    "params": ["0x67a78c58c9dd2743f4d4e1ead9269e3419231702e3fcffc1105d38cfdb745b69","0x1"],
+    "id": 12
+}'
+
+//Respond
+{
+"jsonrpc":"2.0",
+"id":12,
+"result":null
+}
+
+```
+
+#### `eth_getTransactionByBlockNumberAndIndex`
+
+Returns the transaction with the specified index sequence number within the specified numbered block.
+
+##### Parameters
+
+`Object`：
+
+- `String` - *Block number*，Integer block number, or the string "earliest", "latest", or "pending".
+- `String` - *Transaction index*，The index number of the transaction within the block.
+
+##### Returns
+
+`Object`：
+
+- `String` - *Transaction informatoin*，Transaction informatoin.
+
+##### Example
+
+```js
+//Request
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionByBlockNumberAndIndex",
+    "params": ["0x1","0x1"],
+    "id": 12
+}'
+
+//Respond
+{
+"jsonrpc":"2.0",
+"id":12,
+"result":null
+}
+
+```
 
