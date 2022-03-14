@@ -2,14 +2,15 @@
 
 ### 如何使用 API
 
-| Client   | URL   |
+| 网络   | URL   |
 |:--:   |:--:   |
-|Go   |http://localhost:8545|
+|  主网  |https://mainnet.bmcchain.com|
+|测试网 |https://testnet.bmcchain.com|
 
-### Go
+### 示例
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' \
+curl --location --request POST 'https://mainnet.bmcchain.com' \
 --header 'Content-Type: application/json' \
 --data '{
     "jsonrpc": "2.0",
@@ -22,7 +23,7 @@ curl --location --request POST 'http://localhost:8545' \
 {
 "jsonrpc":"2.0",
 "id":12,
-"result":"0x92765"
+"result":"0x32366"
 }
 ```
 
@@ -48,6 +49,8 @@ curl --location --request POST 'http://localhost:8545' \
 * [`eth_getTransactionReceipt`](#eth_getTransactionReceipt)
 * [`eth_getTransactionByHash`](#eth_getTransactionByHash)
 * [`eth_getCode`](#eth_getCode)
+* [`eth_getTransactionByBlockHashAndIndex`](#eth_getTransactionByBlockHashAndIndex)
+* [`eth_getTransactionByBlockNumberAndIndex`](#eth_getTransactionByBlockNumberAndIndex)
 
 #### `eth_blockNumber`
 
@@ -67,7 +70,7 @@ curl --location --request POST 'http://localhost:8545' \
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' \
+curl --location --request POST 'https://mainnet.bmcchain.com' \
 --header 'Content-Type: application/json' \
 --data '{
     "jsonrpc": "2.0",
@@ -80,7 +83,7 @@ curl --location --request POST 'http://localhost:8545' \
 {
 "jsonrpc":"2.0",
 "id":12,
-"result":"0x92765"
+"result":"0x32366"
 }
 ```
 #### `eth_getBlockByNumber`
@@ -127,7 +130,7 @@ curl --location --request POST 'http://localhost:8545' \
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBlockByNumber",
     "params": ["0x92765",true],
@@ -163,7 +166,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_getBlockByHash`
 
-返回具有指定哈希的块。
+返回指定哈希的区块信息。
 
 ##### 参数
 
@@ -204,7 +207,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBlockByHash",
     "params": ["0x66f2ef5b9eddaa63b5501dec4a3d6740c914ddf6419aec1771479c6476454a11",true],
@@ -258,10 +261,10 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBlockTransactionCountByNumber",
-    "params": ["0x92765"],
+    "params": ["0x1"],
     "id": 12
 }'
 
@@ -269,7 +272,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 {
 "jsonrpc":"2.0",
 "id":12,
-"result":"0x0"
+"result":"0x1"
 }
 
 ```
@@ -290,10 +293,10 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBlockTransactionCountByHash",
-    "params": ["0x66f2ef5b9eddaa63b5501dec4a3d6740c914ddf6419aec1771479c6476454a11"],
+    "params": ["0x3a871a4c817df1625a054e79bdec02a6842c5db5a5209b3524636dd6c28dbf40"],
     "id": 12
 }'
 
@@ -301,7 +304,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 {
 "jsonrpc":"2.0",
 "id":12,
-"result":"0x0"
+"result":"0x1"
 }
 
 ```
@@ -322,10 +325,10 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getUncleCountByBlockHash",
-    "params": ["0x66f2ef5b9eddaa63b5501dec4a3d6740c914ddf6419aec1771479c6476454a11"],
+    "params": ["0xe0dce5b9aa028956bf14101eec5d41008471ccca9f50b8da0968991ba9aeea93"],
     "id": 12
 }'
 
@@ -358,10 +361,10 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getUncleCountByBlockNumber",
-    "params": ["0x92765"],
+    "params": ["0x323f5"],
     "id": 12
 }'
 
@@ -397,7 +400,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_syncing",
     "params": [],
@@ -430,7 +433,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_accounts",
     "params": [],
@@ -463,7 +466,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_gasPrice",
     "params": [],
@@ -474,7 +477,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 {
 "jsonrpc": "2.0",
 "id": 12,
-"result":"0x3b9aca00"
+"result":"0x12a05f200"
 }
 ```
 
@@ -496,7 +499,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_newBlockFilter",
     "params": [],
@@ -507,7 +510,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 {
 "jsonrpc": "2.0",
 "id": 12,
-"result":"0xbffb379bfba8434b4f7b45bc09718300"
+"result":"0xa4d21c5909c3e5355f0095ce3d530ab7"
 }
 ```
 
@@ -529,7 +532,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_newPendingTransactionFilter",
     "params": [],
@@ -540,7 +543,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 {
 "jsonrpc": "2.0",
 "id": 12,
-"result":"0x11a1e4f3e5e6ead5922574ed4e9b4b2b"
+"result":"0xb899e1d4f0b20082620ac51bee0546ac"
 }
 ```
 
@@ -564,7 +567,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_uninstallFilter",
     "params": ["0x11a1e4f3e5e6ead5922574ed4e9b4b2b"],
@@ -597,7 +600,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_mining",
     "params": [],
@@ -628,9 +631,9 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
-    "method": "eth_mining",
+    "method": "eth_hashrate",
     "params": [],
     "id": 12
 }'
@@ -660,7 +663,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getBalance",
     "params": ["0x6721c700284022337d0A549Cce25D31fE611C687","latest"],
@@ -693,7 +696,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getTransactionCount",
     "params": ["0x6721c700284022337d0A549Cce25D31fE611C687","latest"],
@@ -708,9 +711,9 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 #### `eth_getTransactionReceipt`
 
-返回指定交易的收据，使用哈希指定交易。
+根据哈希返回交易信息。
 
-需要指出的是，挂起的交易其收据无效。
+注意：挂起的交易无效。
 
 ##### 参数
 
@@ -743,7 +746,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getTransactionReceipt",
     "params": ["0x3ddeb97b8a3bc800e57ccec58c197e024e3a0030a2b690a31be6e0904195077c"],
@@ -800,7 +803,7 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getTransactionByHash",
     "params": ["0x3ddeb97b8a3bc800e57ccec58c197e024e3a0030a2b690a31be6e0904195077c"],
@@ -849,10 +852,10 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```js
 //请求
-curl --location --request POST 'http://localhost:8545' --header 'Content-Type: application/json' --data '{
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
     "jsonrpc": "2.0",
     "method": "eth_getCode",
-    "params": ["0x6721c700284022337d0A549Cce25D31fE611C687","latest"],
+    "params": ["0x9B3EE91d5f499cB08871dA83AEE5a1f39302Dde8","latest"],
     "id": 12
 }'
 
@@ -865,7 +868,78 @@ curl --location --request POST 'http://localhost:8545' --header 'Content-Type: a
 
 ```
 
+#### `eth_getTransactionByBlockHashAndIndex`
+
+返回指定块内具有指定索引序号的交易。
+
+##### 参数
+
+`Object`：
+
+- `String` - *Block hash*，32字节，区块哈希。
+- `String` - *Transaction index*，交易在区块内的索引序号。
+
+##### 返回值
+
+`Object`：
+
+- `String` - *Transaction informatoin*，交易信息
+
+##### 代码示例
+
+```js
+//请求
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionByBlockHashAndIndex",
+    "params": ["0x67a78c58c9dd2743f4d4e1ead9269e3419231702e3fcffc1105d38cfdb745b69","0x1"],
+    "id": 12
+}'
+
+//响应
+{
+"jsonrpc":"2.0",
+"id":12,
+"result":null
+}
+
+```
 
 
+#### `eth_getTransactionByBlockNumberAndIndex`
 
+返回指定编号的块内具有指定索引序号的交易。
+
+##### 参数
+
+`Object`：
+
+- `String` - *Block number*，整数块编号，或字符串"earliest"、"latest" 或"pending"。
+- `String` - *Transaction index*，交易在区块内的索引序号。
+
+##### 返回值
+
+`Object`：
+
+- `String` - *Transaction informatoin*，交易信息
+
+##### 代码示例
+
+```js
+//请求
+curl --location --request POST 'https://mainnet.bmcchain.com' --header 'Content-Type: application/json' --data '{
+    "jsonrpc": "2.0",
+    "method": "eth_getTransactionByBlockNumberAndIndex",
+    "params": ["0x1","0x1"],
+    "id": 12
+}'
+
+//响应
+{
+"jsonrpc":"2.0",
+"id":12,
+"result":null
+}
+
+```
 

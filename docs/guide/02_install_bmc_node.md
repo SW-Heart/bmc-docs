@@ -48,7 +48,7 @@ Unzip it and you'll see two files  `genesis.json` and `config.toml`.
 
 ### Init
 
-Add the configuration file(`genesis.json` and `config.toml`) to directory `/bmc-mian/build/bin`
+Add the configuration file(`genesis.json` and `config.toml`) to directory `/bmc-main/build/bin`
 go to ```/bmc-main/build/bin``` 
 
 ```shell
