@@ -2,7 +2,7 @@
 
 ## 1.  Summary
 
-This BAP-020 proposes an interface standard to create token contracts on Bytom Sidechain.
+This BAP-20 proposes an interface standard to create token contracts on Bytom Sidechain.
 
 ## 2.  Abstract
 
