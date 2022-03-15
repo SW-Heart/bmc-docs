@@ -8,9 +8,9 @@ BAP-020提出了一个接口标准，用于在Bytom侧链上创建Token合约。
 
 以下标准定义了代币智能合约的 API 实现。 它是由以太坊的 ERC20 协议衍生而来，提供基本的代币转账功能，允许代币被批准以便其他链上第三方使用，以及比原链和比原链侧链之间的转账。
 
-## 3.  动机
+## 3.  目的
 
-标准接口允许比原链上的任何代币被其他应用程序使用：从钱包到去中心化交易所，以一致的方式。
+创建标准接口，允许比原链上的任何代币被其他应用程序以一致的方式使用，包括但不限于钱包、去中心化交易所等。
 
 ## 4.  状态
 
@@ -40,7 +40,7 @@ function symbol() external view returns (string memory)
 
 - 返回Token的标记符号，例如“HIX”。
 - 提高可用性。
-- **注意** - 这个方法在EIP20中是可选的，但在BAP20中却是必需的。
+- **注意** - 这个方法在EIP20中是可选的，但在BAP20中却是必需声明的。
 
 ##### 5.1.1.3 decimals
 
@@ -50,7 +50,7 @@ function decimals() external view returns (uint8)
 
 - 返回Token使用的小数位数 - 例如 8，表示将token数量除以100000000。
 - 提高可用性。
-- **注意** - 这个方法在EIP20中是可选的。在BAP20中...
+- **注意** - 这个方法在EIP20中是可选的。在BAP20中是必需声明的。
 
 ##### 5.1.1.4 totalSupply
 
@@ -74,7 +74,7 @@ function balanceOf(address account) external view returns (uint256)
 function getOwner() external view returns (address)
 ```
 
-- 返回绑定 bap2 Token所需的 bap20 Token所有者。
+- 返回绑定 BAP20 Token所需的 BAP20 Token所有者。
 - **注意** - 这是EIP20的扩展方法。
 
 ##### 5.1.1.7 transfer
@@ -83,8 +83,8 @@ function getOwner() external view returns (address)
 function transfer(address recipient, uint256 amount) external returns (bool)
 ```
 
-- 将 `_value` 数量的代币转移到地址 `_to`，并且必须触发 Transfer 。 如果消息调用者的帐户余额没有足够的代币可以花费，则抛出该函数。
-- **注意** - 可以使用0 值的传输，并可以触发 Transfer 。
+- 将 `_value` 数量的代币转移到地址 `_to`，并且必须触发 Transfer 。 如果消息调用者的帐户余额不足，则抛出该函数。
+- **注意** - 可以使用0值的传输，并可以触发 Transfer 。
 
 ##### 5.1.1.8 transferFrom
 
